@@ -105,10 +105,10 @@
             transform: translateY(-2px);
         }
 
-        /* تقویم ماه بزرگ */
+        /* تقویم ماه */
         .moon-calendar {
-            width: 280px;
-            height: 280px;
+            width: 270px;
+            height: 270px;
             background: radial-gradient(circle at 30% 30%, #ffffff, #80deea, #004d40);
             border-radius: 50%;
             box-shadow: 0 0 40px rgba(0, 230, 118, 0.4), 0 0 80px rgba(0, 188, 212, 0.3);
@@ -164,50 +164,56 @@
             100% { transform: scale(1.1); box-shadow: 0 0 40px #fff, 0 0 80px #00e676; }
         }
 
-        /* پیانو کامل */
+        /* پیانو واقعی */
         .piano-container {
-            background: rgba(0, 20, 20, 0.7);
-            padding: 15px;
-            border-radius: 15px;
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(0,230,118,0.3);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-            max-width: 100%;
-            overflow-x: auto;
+            background: #111;
+            padding: 20px 20px 10px 20px;
+            border-radius: 12px;
+            border: 4px solid #333;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.8), 0 0 15px rgba(0, 230, 118, 0.2);
         }
         .piano {
             display: flex;
             position: relative;
-            height: 170px;
+            height: 180px;
         }
-
         .key {
-            width: 38px;
+            width: 42px;
             height: 100%;
-            background: white;
+
+            background: linear-gradient(to bottom, #eeeeee 0%, #ffffff 100%);
             border: 1px solid #bbb;
             border-radius: 0 0 5px 5px;
             cursor: pointer;
             display: flex;
             align-items: flex-end;
             justify-content: center;
-            padding-bottom: 8px;
-            color: #333;
-            font-size: 0.8rem;
+            padding-bottom: 12px;
+            color: #444;
+            font-size: 0.85rem;
             font-weight: bold;
-            transition: background 0.1s;
+            box-shadow: inset 0 -5px 10px rgba(0,0,0,0.1);
+            transition: all 0.1s ease;
         }
-        .key.active-key { background: #00e676; color: white; }
+        .key:active, .key.active-key {
+            background: #00e676;
+            color: white;
+            box-shadow: inset 0 -2px 5px rgba(0,0,0,0.2);
+            transform: translateY(2px);
+        }
         .key.black {
-            width: 24px;
-            height: 105px;
-            background: #111;
+            width: 26px;
+            height: 110px;
+            background: linear-gradient(to bottom, #333 0%, #000 100%);
             color: white;
             position: absolute;
             z-index: 2;
-            border-radius: 0 0 3px 3px;
+            border-radius: 0 0 4px 4px;
+            box-shadow: 2px 3px 5px rgba(0,0,0,0.5);
         }
-        .key.black.active-key { background: #ff4081; }
+        .key.black:active, .key.black.active-key {
+            background: #ff4081;
+        }
 
         /* صورت فلکی */
         .constellation-box {
@@ -235,42 +241,97 @@
             position: absolute;
             background: rgba(255, 255, 255, 0.95);
             color: #00251a;
+
             padding: 4px 10px;
             border-radius: 12px;
             font-size: 0.8rem;
             font-weight: bold;
             opacity: 0;
             transition: opacity 0.5s ease;
-
             white-space: nowrap;
             z-index: 6;
         }
 
-        /* Upside Down & Demogorgon */
-        .demogorgon {
-            font-size: 4rem;
-            cursor: pointer;
-            transition: transform 0.2s, opacity 0.5s;
-            filter: drop-shadow(0 0 15px #ff1744);
-            animation: floatGorgon 2s infinite alternate ease-in-out;
+        /* Stranger Things عناصر */
+        .hawkins-sign {
+            background: #3e0e12;
+            border: 3px solid #d32f2f;
+            border-radius: 8px;
+            padding: 8px 20px;
+            box-shadow: 0 0 15px rgba(211, 47, 47, 0.5), inset 0 0 10px #000;
+            margin-bottom: 12px;
+            text-align: center;
         }
-        @keyframes floatGorgon {
-            0% { transform: translateY(0) scale(1); }
-            100% { transform: translateY(-15px) scale(1.1); }
+        .hawkins-sign span { display: block; font-size: 0.75rem; color: #ffcdd2; letter-spacing: 2px; }
+        .hawkins-sign h2 { font-size: 1.8rem; color: #ffffff; letter-spacing: 3px; margin-top: 2px; text-shadow: 2px 2px #000; }
+
+        .christmas-lights {
+            background: rgba(0, 0, 0, 0.6);
+            border: 1px dashed rgba(255, 255, 255, 0.3);
+            border-radius: 10px;
+            padding: 8px 15px;
+            margin-bottom: 12px;
+        }
+        .light-string { display: flex; justify-content: center; gap: 10px; margin-bottom: 4px; }
+        .light { width: 10px; height: 10px; border-radius: 50%; animation: blinkLight 1s infinite alternate; }
+        .light.red { background: #ff1744; box-shadow: 0 0 10px #ff1744; }
+        .light.blue { background: #29b6f6; box-shadow: 0 0 10px #29b6f6; animation-delay: 0.3s; }
+        .light.green { background: #00e676; box-shadow: 0 0 10px #00e676; animation-delay: 0.6s; }
+        .light.yellow { background: #ffeb3b; box-shadow: 0 0 10px #ffeb3b; animation-delay: 0.9s; }
+
+        @keyframes blinkLight { 0% { opacity: 0.3; } 100% { opacity: 1; } }
+        .alphabet { font-size: 1.3rem; font-weight: bold; letter-spacing: 10px; color: #fff; text-shadow: 0 0 8px #ffeb3b; }
+
+        .eleven-tag {
+            font-size: 1.8rem;
+            font-weight: 900;
+            color: #fff;
+            background: #000;
+            border: 2px solid #fff;
+            padding: 2px 12px;
+            border-radius: 6px;
+            letter-spacing: 3px;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+            margin: 8px 0;
         }
 
-        /* کیک تولد */
+        .demogorgon-flower {
+            font-size: 4rem;
+            cursor: pointer;
+            transition: transform 0.3s ease, opacity 0.5s ease;
+            filter: drop-shadow(0 0 20px #ff1744);
+            animation: floatGorgon 2s infinite alternate ease-in-out;
+        }
+
+        @keyframes floatGorgon {
+            0% { transform: translateY(0) scale(1); }
+            100% { transform: translateY(-10px) scale(1.1); }
+        }
+
+        .st-quote-1 {
+            color: #ff5252;
+            font-weight: bold;
+            font-size: 1.6rem;
+            letter-spacing: 2px;
+            text-shadow: 0 0 15px #ff1744;
+            margin-bottom: 8px;
+        }
+        .st-quote-2 {
+            color: #80deea;
+            font-style: italic;
+            font-size: 1.1rem;
+            text-shadow: 0 0 10px rgba(128,222,234,0.5);
+        }
+
+        /* کیک */
         .cake-container {
-            font-size: 6rem;
+            font-size: 5.5rem;
             position: relative;
-            margin: 15px 0;
+            margin: 10px 0;
             filter: drop-shadow(0 0 20px rgba(0,230,118,0.5));
             animation: bounceCake 2s infinite alternate;
         }
-        @keyframes bounceCake {
-            0% { transform: translateY(0); }
-            100% { transform: translateY(-10px); }
-        }
+        @keyframes bounceCake { 0% { transform: translateY(0); } 100% { transform: translateY(-10px); } }
 
         /* نامه */
         .letter-card {
@@ -286,27 +347,10 @@
             opacity: 0;
             transition: all 1s ease 0.5s;
         }
-        .stage.active .letter-card {
-            transform: translateY(0);
-            opacity: 1;
-        }
-        .letter-card p {
-            font-size: 1.1rem;
-            color: #e0f2f1;
-            line-height: 2;
-            margin-bottom: 12px;
-        }
-        .signature {
-            text-align: left;
-            font-weight: bold;
-            font-size: 1.2rem;
-            color: #64ffda;
-            margin-top: 15px;
+        .stage.active .letter-card { transform: translateY(0); opacity: 1; }
+        .letter-card p { font-size: 1.1rem; color: #e0f2f1; line-height: 2; margin-bottom: 12px; }
+        .signature { text-align: left; font-weight: bold; font-size: 1.2rem; color: #64ffda; margin-top: 15px; direction: ltr; }
 
-            direction: ltr;
-        }
-
-        /* کنفتی کاغذ رنگی */
         .confetti {
             position: fixed;
             width: 10px;
@@ -315,12 +359,11 @@
             top: -10px;
             animation: fall 3s linear forwards;
         }
-        @keyframes fall {
-            to { transform: translateY(100vh) rotate(720deg); opacity: 0; }
-        }
+        @keyframes fall { to { transform: translateY(100vh) rotate(720deg); opacity: 0; } }
     </style>
 </head>
 <body>
+
 
     <canvas id="bg-canvas"></canvas>
 
@@ -346,35 +389,35 @@
         <p style="font-size: 0.9rem; color: #80deea;">تاریخ تولد ۱۷ سالگی پارمیس</p>
     </div>
 
-    <!-- مرحله ۲: لمس ماه روی آب -->
+    <!-- مرحله ۲: لمس ماه -->
     <div class="stage" id="stage2">
         <p>ماه روی آب رو لمس کن تا جادو بشه... 🌙✨</p>
         <div id="moon-reflection" onclick="triggerConfettiAndNext()"></div>
     </div>
 
-    <!-- مرحله ۳: پیانوی کامل -->
+    <!-- مرحله ۳: پیانوی واقع‌گرایانه -->
     <div class="stage" id="stage3">
         <h1>پیانوی پارمیس 🎹</h1>
-        <p>این سه نت قطعه معروف Fur Elise رو بزن: <br><b style="color:#64ffda">می (E) - دیز (D#) - می (E)</b></p>
+        <p>آهنگ Fur Elise رو بنواز: <br><b style="color:#00e676">می (E) - دیز (D#) - می (E) - دیز (D#)</b></p>
         <div class="piano-container">
-
             <div class="piano">
                 <div class="key" onclick="playNote(261.63, 'C', this)">C</div>
-                <div class="key black" style="left: 26px;" onclick="playNote(277.18, 'C#', this)"></div>
+                <div class="key black" style="left: 29px;" onclick="playNote(277.18, 'C#', this)"></div>
                 <div class="key" onclick="playNote(293.66, 'D', this)">D</div>
-                <div class="key black" style="left: 64px;" onclick="playNote(311.13, 'D#', this)">D#</div>
+                <div class="key black" style="left: 71px;" onclick="playNote(311.13, 'D#', this)">D#</div>
                 <div class="key" onclick="playNote(329.63, 'E', this)">E</div>
                 <div class="key" onclick="playNote(349.23, 'F', this)">F</div>
-                <div class="key black" style="left: 140px;" onclick="playNote(369.99, 'F#', this)"></div>
+                <div class="key black" style="left: 155px;" onclick="playNote(369.99, 'F#', this)"></div>
                 <div class="key" onclick="playNote(392.00, 'G', this)">G</div>
-                <div class="key black" style="left: 178px;" onclick="playNote(415.30, 'G#', this)"></div>
+                <div class="key black" style="left: 197px;" onclick="playNote(415.30, 'G#', this)"></div>
                 <div class="key" onclick="playNote(440.00, 'A', this)">A</div>
-                <div class="key black" style="left: 216px;" onclick="playNote(466.16, 'A#', this)"></div>
+                <div class="key black" style="left: 239px;" onclick="playNote(466.16, 'A#', this)"></div>
                 <div class="key" onclick="playNote(493.88, 'B', this)">B</div>
             </div>
         </div>
         <button class="btn" style="margin-top:20px; font-size:0.85rem; padding:6px 18px;" onclick="nextStage(4)">رد شدن ➔</button>
     </div>
+
 
     <!-- مرحله ۴: صورت فلکی -->
     <div class="stage" id="stage4">
@@ -396,32 +439,43 @@
         <button class="btn" id="btn-stage4" style="display:none; margin-top:15px;" onclick="nextStage(5)">ورود به دنیای بعدی 🔮</button>
     </div>
 
-    <!-- مرحله ۵: Upside Down با بازی گل استرنجر ثینگز -->
+    <!-- مرحله ۵: Stranger Things کامل -->
     <div class="stage" id="stage5">
-        <h1 style="color:#ff1744; text-shadow:0 0 10px #ff1744;">Upside Down 🔻</h1>
-        <p id="st-hint">روی هیولای دموگورگن کلیک کن تا شکستش بدی!</p>
-        
-        <div class="demogorgon" id="demogorgon" onclick="defeatGorgon()">🌺👹</div>
-
-        <div id="st-secret" style="display:none; margin:20px 0;">
-            <p style="color:#ff5252; font-weight:bold; font-size:1.4rem;">"Friends Don't Lie..."</p>
-            <p style="color:#e0f2f1; font-size:1rem;">دوست داشتن ما حتی در دنیای وارونه هم تغییری نمی‌کنه! ❤️</p>
+        <div class="hawkins-sign">
+            <span>WELCOME TO</span>
+            <h2>HAWKINS</h2>
         </div>
 
-        <button class="btn" id="btn-stage5" style="display:none;" onclick="nextStage(6)">ورود به جشن 🎂</button>
+        <div class="christmas-lights">
+            <div class="light-string">
+                <span class="light red"></span><span class="light blue"></span><span class="light green"></span><span class="light yellow"></span><span class="light red"></span><span class="light blue"></span>
+            </div>
+            <div class="alphabet">R U N</div>
+        </div>
+
+        <div class="demogorgon-flower" id="demogorgon" onclick="defeatGorgon()">🌸👹</div>
+
+        <div class="eleven-tag">011</div>
+
+        <div id="st-secret" style="display:none; margin:15px 0;">
+            <p class="st-quote-1">"Friends Don't Lie."</p>
+            <p class="st-quote-2">"If we're dying, we're dying together."</p>
+        </div>
+
+        <button class="btn" id="btn-stage5" style="display:none; margin-top:10px;" onclick="nextStage(6)">ورود به جشن 🎂</button>
     </div>
 
-    <!-- مرحله ۶: کیک تولد بزرگ -->
+    <!-- مرحله ۶: کیک تولد -->
     <div class="stage" id="stage6">
         <h1 style="color:#64ffda;">تولدت مبارک فرشته من! 🎉</h1>
         <div class="cake-container">🎂</div>
         <h1 style="font-size: 3.5rem; color:#00e676; text-shadow: 0 0 20px #00e676;">17</h1>
-
         <p>۱۷ سالگی قشنگت مبارک باشه!</p>
         <button class="btn" style="margin-top:15px;" onclick="nextStage(7)">خواندن نامه 💌</button>
     </div>
 
     <!-- مرحله ۷: نامه -->
+
     <div class="stage" id="stage7">
         <div class="letter-card">
             <p>سلام فرشتم،</p>
@@ -476,16 +530,16 @@
         drawStars();
 
         function nextStage(stageNum) {
-
             document.querySelectorAll('.stage').forEach(el => el.classList.remove('active'));
             const target = document.getElementById(`stage${stageNum}`);
             if(target) target.classList.add('active');
 
             if(stageNum === 4) {
+
                 startConstellationAnimation();
             } else if(stageNum === 5) {
-                document.getElementById('bg-canvas').style.background = "#1a0005";
-                document.querySelector('.ocean').style.filter = "hue-rotate(280deg) brightness(0.3)";
+                document.getElementById('bg-canvas').style.background = "#0d0205";
+                document.querySelector('.ocean').style.filter = "hue-rotate(280deg) brightness(0.2)";
             } else if(stageNum === 6) {
                 document.getElementById('bg-canvas').style.background = "radial-gradient(circle, #00332c 0%, #031b1e 100%)";
                 document.querySelector('.ocean').style.filter = "hue-rotate(120deg) brightness(0.8)";
@@ -508,6 +562,7 @@
             setTimeout(() => nextStage(3), 1200);
         }
 
+        // سیستم صدای پیانوی واقعی با افت صدای طبیعی (Envelope)
         const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
         let pianoSequence = [];
 
@@ -515,28 +570,35 @@
             if (audioCtx.state === 'suspended') {
                 audioCtx.resume();
             }
+
             const osc = audioCtx.createOscillator();
-            const gain = audioCtx.createGain();
-            
-            osc.type = 'sine';
+            const gainNode = audioCtx.createGain();
+
+            // موج مثلثی برای شبیه‌سازی صدای سازهای زهی و پیانو
+            osc.type = 'triangle';
             osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
-            
-            gain.gain.setValueAtTime(0.3, audioCtx.currentTime);
-            gain.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + 1.2);
 
-            osc.connect(gain);
-            gain.connect(audioCtx.destination);
+            // افت صدای تدریجی (Sustain & Decay)
+            const now = audioCtx.currentTime;
+            gainNode.gain.setValueAtTime(0, now);
+            gainNode.gain.linearRampToValueAtTime(0.5, now + 0.03); // ضربه کلید
+            gainNode.gain.exponentialRampToValueAtTime(0.0001, now + 2.5); // رزونانس طولانی پیانو
 
-            osc.start();
-            osc.stop(audioCtx.currentTime + 1.2);
+            osc.connect(gainNode);
+            gainNode.connect(audioCtx.destination);
+
+            osc.start(now);
+            osc.stop(now + 2.5);
 
             element.classList.add('active-key');
             setTimeout(() => element.classList.remove('active-key'), 300);
 
             pianoSequence.push(noteName);
-            if(pianoSequence.length > 3) pianoSequence.shift();
+            if(pianoSequence.length > 4) pianoSequence.shift();
 
-            if(pianoSequence.join('-') === 'E-D#-E') {
+
+            // چک کردن نت قطعه Fur Elise: E - D# - E - D#
+            if(pianoSequence.join('-') === 'E-D#-E-D#') {
                 setTimeout(() => nextStage(4), 800);
             }
         }
@@ -584,7 +646,6 @@
             g.style.opacity = "0";
             setTimeout(() => {
                 g.style.display = 'none';
-                document.getElementById('st-hint').style.display = 'none';
                 document.getElementById('st-secret').style.display = 'block';
                 document.getElementById('btn-stage5').style.display = 'inline-block';
             }, 500);
