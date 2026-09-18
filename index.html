@@ -169,18 +169,21 @@
         }
         .star-node {
             position: absolute;
-            width: 24px;
-            height: 24px;
-            background: #fff;
+            width: 20px;
+            height: 20px;
+            background: rgba(255, 255, 255, 0.3);
             border-radius: 50%;
-            box-shadow: 0 0 15px #fff, 0 0 25px #70a1ff;
-            cursor: pointer;
-            transition: transform 0.3s, background 0.3s;
+            box-shadow: 0 0 10px #fff;
+            transition: all 0.5s ease;
             z-index: 5;
         }
-        .star-node:hover { transform: scale(1.3); }
-        .star-text {
+        .star-node.lit {
+            background: #9ef01a;
+            box-shadow: 0 0 20px #9ef01a, 0 0 30px #9ef01a;
 
+            transform: scale(1.3);
+        }
+        .star-text {
             position: absolute;
             background: rgba(255, 255, 255, 0.95);
             color: #111;
@@ -188,9 +191,8 @@
             border-radius: 12px;
             font-size: 0.85rem;
             font-weight: bold;
-            pointer-events: none;
             opacity: 0;
-            transition: opacity 0.3s;
+            transition: opacity 0.5s ease;
             white-space: nowrap;
             z-index: 6;
         }
@@ -240,8 +242,8 @@
             transform: scale(1.2) rotate(15deg);
         }
 
-        .letter-card {
 
+        .letter-card {
             background: rgba(10, 20, 35, 0.85);
             border: 1px solid rgba(112, 161, 255, 0.4);
             padding: 35px;
@@ -294,12 +296,13 @@
     <div class="stage" id="stage2">
         <p>ماه روی آب رو پیدا کن و لمسش کن... 🌙</p>
         <div id="moon-reflection" onclick="nextStage(3)"></div>
+
     </div>
 
     <!-- مرحله ۳ -->
     <div class="stage" id="stage3">
         <h1>پیانوی پارمیس 🎹</h1>
-        <p>این سه نت رو به ترتیب بزن: <b style="color:#70a1ff">دو (C) - ر (D) - می (E)</b></p>
+        <p>این سه نت رو بزن: <b style="color:#70a1ff">دو (C) - ر (D) - می (E)</b></p>
         <div class="piano-container">
             <div class="piano">
                 <div class="key" onclick="playNote(261.63, 'C', this)">C</div>
@@ -312,24 +315,25 @@
                 <div class="key" onclick="playNote(392.00, 'G', this)">G</div>
             </div>
         </div>
+        <button class="btn" style="margin-top:20px; font-size:0.9rem; padding:8px 20px;" onclick="nextStage(4)">بعدی ➔</button>
     </div>
 
     <!-- مرحله ۴ -->
     <div class="stage" id="stage4">
         <h1>آسمان پارمیس ⭐</h1>
-        <p>روی تمام ستاره‌ها کلیک کن تا صورت فلکی شکل بگیره!</p>
+        <p id="star-desc">در حال تشکیل صورت فلکی...</p>
         <div class="constellation-box" id="constellation">
             <svg style="position:absolute; width:100%; height:100%; top:0; left:0; z-index:1;">
-                <line id="line1" x1="50" y1="50" x2="160" y2="40" stroke="rgba(255,255,255,0.6)" stroke-width="2" style="display:none;"/>
-                <line id="line2" x1="160" y1="40" x2="270" y2="100" stroke="rgba(255,255,255,0.6)" stroke-width="2" style="display:none;"/>
-                <line id="line3" x1="270" y1="100" x2="210" y2="230" stroke="rgba(255,255,255,0.6)" stroke-width="2" style="display:none;"/>
-                <line id="line4" x1="210" y1="230" x2="80" y2="200" stroke="rgba(255,255,255,0.6)" stroke-width="2" style="display:none;"/>
+                <line id="line1" x1="50" y1="50" x2="160" y2="40" stroke="#9ef01a" stroke-width="2" style="display:none;"/>
+                <line id="line2" x1="160" y1="40" x2="270" y2="100" stroke="#9ef01a" stroke-width="2" style="display:none;"/>
+                <line id="line3" x1="270" y1="100" x2="210" y2="230" stroke="#9ef01a" stroke-width="2" style="display:none;"/>
+                <line id="line4" x1="210" y1="230" x2="80" y2="200" stroke="#9ef01a" stroke-width="2" style="display:none;"/>
             </svg>
-            <div class="star-node" style="top:40px; left:40px;" onclick="clickStar(1, this, '۱۷ سالگی 🎂')"></div>
-            <div class="star-node" style="top:30px; left:150px;" onclick="clickStar(2, this, 'پیانو 🎹')"></div>
-            <div class="star-node" style="top:90px; left:260px;" onclick="clickStar(3, this, 'ماه 🌙')"></div>
-            <div class="star-node" style="top:220px; left:200px;" onclick="clickStar(4, this, 'دریا 🌊')"></div>
-            <div class="star-node" style="top:190px; left:70px;" onclick="clickStar(5, this, 'یک آرزوی قشنگ ✨')"></div>
+            <div class="star-node" id="star1" style="top:40px; left:40px;"></div>
+            <div class="star-node" id="star2" style="top:30px; left:150px;"></div>
+            <div class="star-node" id="star3" style="top:90px; left:260px;"></div>
+            <div class="star-node" id="star4" style="top:220px; left:200px;"></div>
+            <div class="star-node" id="star5" style="top:190px; left:70px;"></div>
         </div>
         <button class="btn" id="btn-stage4" style="display:none; margin-top:20px;" onclick="nextStage(5)">ورود به دنیای بعد 🔮</button>
     </div>
@@ -423,7 +427,9 @@
             const target = document.getElementById(`stage${stageNum}`);
             if(target) target.classList.add('active');
 
-            if(stageNum === 5) {
+            if(stageNum === 4) {
+                startConstellationAnimation();
+            } else if(stageNum === 5) {
                 document.getElementById('bg-canvas').style.background = "#0f0205";
                 document.querySelector('.ocean').style.filter = "hue-rotate(280deg) brightness(0.4)";
             } else if(stageNum === 6) {
@@ -468,30 +474,42 @@
             }
         }
 
-        let clickedStars = 0;
-        function clickStar(index, el, text) {
+        // انیمیشن خودکار صورت فلکی
+        function startConstellationAnimation() {
+            const items = [
+                { id: 'star1', text: '۱۷ سالگی 🎂', line: null },
+                { id: 'star2', text: 'پیانو 🎹', line: 'line1' },
+                { id: 'star3', text: 'ماه 🌙', line: 'line2' },
+                { id: 'star4', text: 'دریا 🌊', line: 'line3' },
+                { id: 'star5', text: 'یک آرزوی قشنگ ✨', line: 'line4' }
+            ];
 
-            if(el.getAttribute('data-clicked') === 'true') return;
-            el.setAttribute('data-clicked', 'true');
-            el.style.background = "#9ef01a";
+            let step = 0;
+            const interval = setInterval(() => {
+                if(step < items.length) {
+                    const item = items[step];
+                    const star = document.getElementById(item.id);
+                    star.classList.add('lit');
 
-            const label = document.createElement('div');
-            label.className = 'star-text';
-            label.innerText = text;
-            label.style.top = (el.offsetTop - 30) + 'px';
-            label.style.left = (el.offsetLeft - 20) + 'px';
-            document.getElementById('constellation').appendChild(label);
-            setTimeout(() => label.style.opacity = 1, 10);
+                    if(item.line) {
+                        document.getElementById(item.line).style.display = 'block';
+                    }
 
-            clickedStars++;
-            if(clickedStars > 1) {
-                const line = document.getElementById(`line${clickedStars-1}`);
-                if(line) line.style.display = 'block';
-            }
+                    const label = document.createElement('div');
+                    label.className = 'star-text';
+                    label.innerText = item.text;
+                    label.style.top = (star.offsetTop - 30) + 'px';
+                    label.style.left = (star.offsetLeft - 20) + 'px';
+                    document.getElementById('constellation').appendChild(label);
+                    setTimeout(() => label.style.opacity = 1, 50);
 
-            if(clickedStars === 5) {
-                document.getElementById('btn-stage4').style.display = 'inline-block';
-            }
+                    step++;
+                } else {
+                    clearInterval(interval);
+                    document.getElementById('star-desc').innerText = "صورت فلکی مخصوص پارمیس ⭐";
+                    document.getElementById('btn-stage4').style.display = 'inline-block';
+                }
+            }, 800);
         }
 
         let lightsOn = 0;
