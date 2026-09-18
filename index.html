@@ -24,7 +24,6 @@
             color: #fff;
         }
 
-        /* پس‌زمینه پویا */
         #bg-canvas {
             position: fixed;
             top: 0;
@@ -35,7 +34,6 @@
             transition: background 1.5s ease;
         }
 
-        /* دریای SVG */
         .ocean {
             position: fixed;
             bottom: 0;
@@ -59,10 +57,8 @@
             0% { transform: translateX(0); }
             50% { transform: translateX(-25px); }
             100% { transform: translateX(0); }
-
         }
 
-        /* مراحل */
         .stage {
             position: absolute;
             top: 0;
@@ -109,7 +105,6 @@
             transform: translateY(-2px);
         }
 
-        /* مرحله ۲: ماه روی آب */
         #moon-reflection {
             width: 70px;
             height: 70px;
@@ -120,13 +115,12 @@
             margin-top: 150px;
             animation: pulseMoon 2.5s infinite alternate;
         }
-
         @keyframes pulseMoon {
             0% { transform: scale(0.9); box-shadow: 0 0 20px #fff, 0 0 40px #70a1ff; }
             100% { transform: scale(1.1); box-shadow: 0 0 40px #fff, 0 0 80px #70a1ff; }
         }
 
-        /* مرحله ۳: پیانو */
+
         .piano-container {
             background: rgba(0, 0, 0, 0.5);
             padding: 20px;
@@ -167,7 +161,6 @@
         }
         .key.black.active-key { background: #ff4757; }
 
-        /* مرحله ۴: صورت فلکی */
         .constellation-box {
             position: relative;
             width: 320px;
@@ -176,19 +169,20 @@
         }
         .star-node {
             position: absolute;
-            width: 18px;
-            height: 18px;
+            width: 24px;
+            height: 24px;
             background: #fff;
             border-radius: 50%;
             box-shadow: 0 0 15px #fff, 0 0 25px #70a1ff;
-
             cursor: pointer;
-            transition: transform 0.3s;
+            transition: transform 0.3s, background 0.3s;
+            z-index: 5;
         }
-        .star-node:hover { transform: scale(1.4); }
+        .star-node:hover { transform: scale(1.3); }
         .star-text {
+
             position: absolute;
-            background: rgba(255, 255, 255, 0.9);
+            background: rgba(255, 255, 255, 0.95);
             color: #111;
             padding: 4px 10px;
             border-radius: 12px;
@@ -198,9 +192,9 @@
             opacity: 0;
             transition: opacity 0.3s;
             white-space: nowrap;
+            z-index: 6;
         }
 
-        /* مرحله ۵: Stranger Things */
         .st-lights {
             display: flex;
             gap: 15px;
@@ -223,7 +217,6 @@
             box-shadow: 0 0 20px currentColor, 0 0 30px currentColor;
         }
 
-        /* مرحله ۶: آیتم‌های پسته و آبی */
         .color-items {
             display: flex;
             gap: 20px;
@@ -242,14 +235,13 @@
             cursor: pointer;
             transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             box-shadow: 0 0 20px rgba(158, 240, 26, 0.4);
-
         }
         .piste-item:hover {
             transform: scale(1.2) rotate(15deg);
         }
 
-        /* مرحله آخر: نامه */
         .letter-card {
+
             background: rgba(10, 20, 35, 0.85);
             border: 1px solid rgba(112, 161, 255, 0.4);
             padding: 35px;
@@ -298,7 +290,6 @@
         <button class="btn" onclick="nextStage(2)">شروع کنیم؟</button>
     </div>
 
-
     <!-- مرحله ۲ -->
     <div class="stage" id="stage2">
         <p>ماه روی آب رو پیدا کن و لمسش کن... 🌙</p>
@@ -329,10 +320,10 @@
         <p>روی تمام ستاره‌ها کلیک کن تا صورت فلکی شکل بگیره!</p>
         <div class="constellation-box" id="constellation">
             <svg style="position:absolute; width:100%; height:100%; top:0; left:0; z-index:1;">
-                <line id="line1" x1="50" y1="50" x2="160" y2="40" stroke="rgba(255,255,255,0.4)" stroke-width="2" style="display:none;"/>
-                <line id="line2" x1="160" y1="40" x2="270" y2="100" stroke="rgba(255,255,255,0.4)" stroke-width="2" style="display:none;"/>
-                <line id="line3" x1="270" y1="100" x2="210" y2="230" stroke="rgba(255,255,255,0.4)" stroke-width="2" style="display:none;"/>
-                <line id="line4" x1="210" y1="230" x2="80" y2="200" stroke="rgba(255,255,255,0.4)" stroke-width="2" style="display:none;"/>
+                <line id="line1" x1="50" y1="50" x2="160" y2="40" stroke="rgba(255,255,255,0.6)" stroke-width="2" style="display:none;"/>
+                <line id="line2" x1="160" y1="40" x2="270" y2="100" stroke="rgba(255,255,255,0.6)" stroke-width="2" style="display:none;"/>
+                <line id="line3" x1="270" y1="100" x2="210" y2="230" stroke="rgba(255,255,255,0.6)" stroke-width="2" style="display:none;"/>
+                <line id="line4" x1="210" y1="230" x2="80" y2="200" stroke="rgba(255,255,255,0.6)" stroke-width="2" style="display:none;"/>
             </svg>
             <div class="star-node" style="top:40px; left:40px;" onclick="clickStar(1, this, '۱۷ سالگی 🎂')"></div>
             <div class="star-node" style="top:30px; left:150px;" onclick="clickStar(2, this, 'پیانو 🎹')"></div>
@@ -340,7 +331,7 @@
             <div class="star-node" style="top:220px; left:200px;" onclick="clickStar(4, this, 'دریا 🌊')"></div>
             <div class="star-node" style="top:190px; left:70px;" onclick="clickStar(5, this, 'یک آرزوی قشنگ ✨')"></div>
         </div>
-        <button class="btn" id="btn-stage4" style="display:none;" onclick="nextStage(5)">ورود به دنیای بعد 🔮</button>
+        <button class="btn" id="btn-stage4" style="display:none; margin-top:20px;" onclick="nextStage(5)">ورود به دنیای بعد 🔮</button>
     </div>
 
     <!-- مرحله ۵ -->
@@ -354,7 +345,6 @@
             <div class="st-light" style="color:#ffa502; background:#ffa502;" onclick="toggleLight(this)"></div>
         </div>
         <div id="st-secret" style="display:none; margin-bottom:20px;">
-
             <p style="color:#ff6b81; font-weight:bold; font-size:1.5rem;">"هیچ چیزی در دنیای وارونه هم نمی‌تونه دوست داشتن ما رو عوض کنه!"</p>
         </div>
         <button class="btn" id="btn-stage5" style="display:none;" onclick="nextStage(6)">ورود به دنیای رنگی ✨</button>
@@ -386,7 +376,6 @@
     </div>
 
     <script>
-        // کانواس پس‌زمینه (ستاره‌ها)
         const canvas = document.getElementById('bg-canvas');
         const ctx = canvas.getContext('2d');
         let stars = [];
@@ -413,7 +402,6 @@
         function drawStars() {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
             ctx.fillStyle = "#ffffff";
-
             stars.forEach(star => {
                 ctx.globalAlpha = star.alpha;
                 ctx.beginPath();
@@ -421,6 +409,7 @@
                 ctx.fill();
                 star.alpha += star.speed;
                 if (star.alpha > 1 || star.alpha < 0) star.speed = -star.speed;
+
             });
             requestAnimationFrame(drawStars);
         }
@@ -429,43 +418,23 @@
         resizeCanvas();
         drawStars();
 
-        // سیستم تعویض مراحل
         function nextStage(stageNum) {
             document.querySelectorAll('.stage').forEach(el => el.classList.remove('active'));
             const target = document.getElementById(`stage${stageNum}`);
             if(target) target.classList.add('active');
 
-            // تغییر تم بر اساس مرحله
             if(stageNum === 5) {
-                // تم Stranger Things
                 document.getElementById('bg-canvas').style.background = "#0f0205";
                 document.querySelector('.ocean').style.filter = "hue-rotate(280deg) brightness(0.4)";
             } else if(stageNum === 6) {
-                // تم آبی و پسته‌ای
                 document.getElementById('bg-canvas').style.background = "radial-gradient(circle, #0d2b45 0%, #020514 100%)";
                 document.querySelector('.ocean').style.filter = "hue-rotate(100deg) brightness(0.8)";
             } else if(stageNum === 7) {
-                // مرحله نامه
                 document.getElementById('bg-canvas').style.background = "#020514";
                 document.querySelector('.ocean').style.filter = "none";
-                // روشن‌تر شدن پس‌زمینه
-                initStarsMore();
             }
         }
 
-        function initStarsMore() {
-            for(let i = 0; i < 200; i++) {
-                stars.push({
-                    x: Math.random() * canvas.width,
-                    y: Math.random() * canvas.height,
-                    radius: Math.random() * 2,
-                    alpha: Math.random(),
-                    speed: Math.random() * 0.03
-                });
-            }
-        }
-
-        // Web Audio API برای پیانو (بدون نیاز به فایل mp3)
         const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
         let pianoSequence = [];
 
@@ -474,7 +443,6 @@
                 audioCtx.resume();
             }
             const osc = audioCtx.createOscillator();
-
             const gain = audioCtx.createGain();
             
             osc.type = 'sine';
@@ -492,7 +460,6 @@
             element.classList.add('active-key');
             setTimeout(() => element.classList.remove('active-key'), 300);
 
-            // بررسی پازل پیانو (C - D - E)
             pianoSequence.push(noteName);
             if(pianoSequence.length > 3) pianoSequence.shift();
 
@@ -501,14 +468,13 @@
             }
         }
 
-        // مرحله ۴: صورت فلکی
         let clickedStars = 0;
         function clickStar(index, el, text) {
-            if(el.dataset.clicked) return;
-            el.dataset.clicked = "true";
+
+            if(el.getAttribute('data-clicked') === 'true') return;
+            el.setAttribute('data-clicked', 'true');
             el.style.background = "#9ef01a";
 
-            // نمایش متن ستاره
             const label = document.createElement('div');
             label.className = 'star-text';
             label.innerText = text;
@@ -528,21 +494,18 @@
             }
         }
 
-        // مرحله ۵: چراغ‌های Stranger Things
         let lightsOn = 0;
         function toggleLight(el) {
             if(!el.classList.contains('on')) {
                 el.classList.add('on');
                 lightsOn++;
                 if(lightsOn === 4) {
-
                     document.getElementById('st-secret').style.display = 'block';
                     document.getElementById('btn-stage5').style.display = 'inline-block';
                 }
             }
         }
 
-        // مرحله ۶: انیمیشن کلیک آیتم‌ها
         function popItem(el) {
             el.style.transform = "scale(1.5) rotate(360deg)";
             setTimeout(() => {
