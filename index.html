@@ -20,7 +20,7 @@
             width: 100%;
             height: 100%;
             overflow: hidden;
-            background: #070913;
+            background: #04060f;
             color: #ffffff;
             transition: background 1.5s ease;
         }
@@ -32,7 +32,7 @@
             width: 100%;
             height: 100%;
             z-index: 1;
-            background: radial-gradient(circle at center, #13172e 0%, #05060c 100%);
+            background: radial-gradient(circle at center, #101428 0%, #030408 100%);
         }
 
         .stage {
@@ -48,8 +48,8 @@
             align-items: center;
             opacity: 0;
             pointer-events: none;
-            transition: opacity 1s cubic-bezier(0.4, 0, 0.2, 1), transform 1s cubic-bezier(0.4, 0, 0.2, 1);
-            transform: scale(0.92);
+            transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1), transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+            transform: scale(0.9);
             text-align: center;
             padding: 20px;
         }
@@ -62,10 +62,10 @@
 
 
         h1 { 
-            font-size: 2.4rem; 
+            font-size: 2.5rem; 
             margin-bottom: 12px; 
             color: #80deea; 
-            text-shadow: 0 0 20px rgba(128, 222, 234, 0.6), 0 0 40px rgba(0, 191, 165, 0.3); 
+            text-shadow: 0 0 20px rgba(128, 222, 234, 0.8), 0 0 40px rgba(0, 191, 165, 0.5); 
             font-weight: 900;
         }
 
@@ -75,31 +75,37 @@
             color: #e0f7fa; 
             line-height: 1.8; 
             font-weight: 500;
-            text-shadow: 0 0 10px rgba(224, 247, 250, 0.3);
+            text-shadow: 0 0 10px rgba(224, 247, 250, 0.4);
         }
 
         .btn {
-            padding: 13px 38px;
-            font-size: 1.1rem;
-            background: linear-gradient(135deg, #00bfa5, #00897b);
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 14px 42px;
+            font-size: 1.15rem;
+            background: linear-gradient(135deg, #00bfa5, #00897b, #1de9b6);
+            background-size: 200% 200%;
+            animation: gradientBtn 3s ease infinite;
+            border: 1px solid rgba(255, 255, 255, 0.4);
             color: #fff;
             border-radius: 30px;
             cursor: pointer;
-            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            box-shadow: 0 6px 20px rgba(0, 191, 165, 0.4);
+            transition: all 0.3s ease;
+            box-shadow: 0 0 25px rgba(0, 191, 165, 0.5);
             font-weight: bold;
             position: relative;
-            overflow: hidden;
+        }
+
+        @keyframes gradientBtn {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
         }
 
         .btn:hover {
-            background: linear-gradient(135deg, #00e676, #00bfa5);
-            box-shadow: 0 8px 25px rgba(0, 230, 118, 0.6);
-            transform: translateY(-3px) scale(1.03);
+            box-shadow: 0 0 35px rgba(0, 230, 118, 0.8);
+            transform: translateY(-3px) scale(1.05);
         }
 
-        /* طراحی ماه فوق‌العاده با جزئیات و تقویم */
+        /* ماه بزرگ و خاص */
         .moon-wrapper {
             position: relative;
             display: flex;
@@ -111,77 +117,69 @@
 
         @keyframes moonFloat {
             0% { transform: translateY(0); }
-            100% { transform: translateY(-12px); }
+            100% { transform: translateY(-15px); }
         }
 
         .moon-glow-ring {
             position: absolute;
-            width: 380px;
-            height: 380px;
+            width: 400px;
+            height: 400px;
             border-radius: 50%;
-            background: radial-gradient(circle, rgba(128, 222, 234, 0.2) 0%, rgba(0, 191, 165, 0.05) 50%, transparent 70%);
+            background: radial-gradient(circle, rgba(128, 222, 234, 0.3) 0%, rgba(0, 191, 165, 0.1) 45%, transparent 70%);
+            animation: pulseGlow 2.5s infinite alternate ease-in-out;
+        }
 
-            animation: pulseGlow 3s infinite alternate ease-in-out;
+        .moon-glow-ring-2 {
+            position: absolute;
+            width: 450px;
+            height: 450px;
+            border-radius: 50%;
+            border: 1px dashed rgba(128, 222, 234, 0.25);
+            animation: rotateRing 20s linear infinite;
+        }
+
+        @keyframes rotateRing {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
         }
 
         @keyframes pulseGlow {
-            0% { transform: scale(0.95); opacity: 0.6; }
-            100% { transform: scale(1.1); opacity: 0.9; }
+            0% { transform: scale(0.92); opacity: 0.5; }
+            100% { transform: scale(1.1); opacity: 0.95; }
         }
 
         .moon-container {
             position: relative;
-            width: 350px;
-            height: 350px;
+            width: 360px;
+            height: 360px;
             border-radius: 50%;
-            background: radial-gradient(circle at 35% 30%, #ffffff 0%, #d8d8d8 35%, #9e9e9e 70%, #424242 100%);
-            box-shadow: inset -25px -25px 40px rgba(0,0,0,0.7), 0 0 50px rgba(255, 255, 255, 0.5), 0 0 100px rgba(128, 222, 234, 0.3);
+            background: radial-gradient(circle at 35% 30%, #ffffff 0%, #e0e0e0 30%, #9e9e9e 65%, #333333 100%);
+            box-shadow: inset -25px -25px 45px rgba(0,0,0,0.8), 0 0 60px rgba(255, 255, 255, 0.6), 0 0 120px rgba(128, 222, 234, 0.4);
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
             overflow: hidden;
-            border: 2px solid rgba(255, 255, 255, 0.8);
+            border: 2px solid rgba(255, 255, 255, 0.85);
             z-index: 2;
-        }
-
-        .moon-container::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; right: 0; bottom: 0;
-            background: 
-                radial-gradient(circle at 25% 25%, rgba(0,0,0,0.18) 0%, transparent 22%),
-                radial-gradient(circle at 75% 20%, rgba(0,0,0,0.15) 0%, transparent 25%),
-                radial-gradient(circle at 50% 80%, rgba(0,0,0,0.22) 0%, transparent 35%),
-                radial-gradient(circle at 20% 65%, rgba(0,0,0,0.12) 0%, transparent 18%),
-                radial-gradient(circle at 80% 60%, rgba(0,0,0,0.16) 0%, transparent 20%);
-            border-radius: 50%;
-            pointer-events: none;
         }
 
         .moon-calendar {
             z-index: 5;
-            background: rgba(10, 15, 30, 0.65);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            padding: 16px;
-            border-radius: 22px;
-            width: 84%;
-            border: 1px solid rgba(255, 255, 255, 0.25);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            background: rgba(8, 12, 26, 0.72);
+            backdrop-filter: blur(14px);
+            padding: 18px;
+            border-radius: 24px;
+            width: 86%;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.6);
         }
 
-        .cal-title { 
-            font-weight: 700; 
-            font-size: 1.35rem; 
-            margin-bottom: 8px; 
-            color: #80deea; 
-            text-shadow: 0 0 10px #00bfa5; 
-        }
+        .cal-title { font-weight: 700; font-size: 1.4rem; margin-bottom: 8px; color: #80deea; text-shadow: 0 0 12px #00bfa5; }
 
         .cal-grid {
-
             display: grid;
+
             grid-template-columns: repeat(7, 1fr);
             gap: 5px;
             font-size: 0.85rem;
@@ -189,13 +187,7 @@
             color: #ffffff;
         }
 
-        .cal-day {
-            padding: 6px 0;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: all 0.2s ease;
-        }
-
+        .cal-day { padding: 6px 0; border-radius: 8px; cursor: pointer; transition: all 0.2s ease; }
         .cal-day:hover { background: rgba(0, 191, 165, 0.4); }
 
         .cal-day.special {
@@ -208,25 +200,24 @@
 
         @keyframes pulse31 {
             0% { transform: scale(1); box-shadow: 0 0 10px #ff4081; }
-            100% { transform: scale(1.22); box-shadow: 0 0 22px #ff4081; }
+            100% { transform: scale(1.22); box-shadow: 0 0 25px #ff4081; }
         }
 
         /* لمس ماه */
         #interactive-moon {
-            width: 240px;
-            height: 240px;
+            width: 250px;
+            height: 250px;
             border-radius: 50%;
             background: radial-gradient(circle at 35% 35%, #ffffff 0%, #dcdcdc 50%, #8d8d8d 100%);
-            box-shadow: 0 0 60px rgba(255, 255, 255, 0.7), 0 0 120px rgba(0, 191, 165, 0.5);
+            box-shadow: 0 0 70px rgba(255, 255, 255, 0.8), 0 0 140px rgba(0, 191, 165, 0.6);
             cursor: pointer;
             animation: floatMoonTouch 3s infinite alternate ease-in-out;
             border: 3px solid #ffffff;
-            position: relative;
         }
 
         @keyframes floatMoonTouch {
-            0% { transform: translateY(0) scale(1); box-shadow: 0 0 50px rgba(255, 255, 255, 0.6); }
-            100% { transform: translateY(-15px) scale(1.05); box-shadow: 0 0 90px rgba(0, 191, 165, 0.8); }
+            0% { transform: translateY(0) scale(1); }
+            100% { transform: translateY(-15px) scale(1.05); }
         }
 
         /* پیانو */
@@ -237,7 +228,7 @@
             padding: 28px 22px 18px 22px;
             border-radius: 20px;
             border-top: 8px solid #e74c3c;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.6), inset 0 2px 5px rgba(255,255,255,0.1);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.6);
             position: relative;
         }
 
@@ -249,22 +240,16 @@
             color: #f1c40f;
             font-size: 0.8rem;
             letter-spacing: 5px;
+
             font-weight: bold;
-            text-shadow: 0 0 8px rgba(241, 196, 15, 0.5);
         }
 
-        .piano {
-            display: flex;
-            position: relative;
-            height: 210px;
-            width: 100%;
-            justify-content: center;
-        }
+        .piano { display: flex; position: relative; height: 210px; width: 100%; justify-content: center; }
 
         .key {
             flex: 1;
             height: 100%;
-            background: linear-gradient(to bottom, #ffffff 0%, #f2f2f2 85%, #e0e0e0 100%);
+            background: linear-gradient(to bottom, #ffffff 0%, #e0e0e0 100%);
             border: 1px solid #bbb;
             border-radius: 0 0 7px 7px;
             cursor: pointer;
@@ -275,8 +260,6 @@
             color: #7f8c8d;
             font-size: 0.85rem;
             font-weight: bold;
-            box-shadow: inset 0 -8px 12px rgba(0,0,0,0.1);
-            transition: all 0.08s ease;
             position: relative;
             z-index: 1;
         }
@@ -285,7 +268,6 @@
             background: linear-gradient(to bottom, #e0e0e0 0%, #00bfa5 100%);
             color: white;
             transform: translateY(4px);
-            box-shadow: inset 0 -2px 5px rgba(0,0,0,0.2);
         }
 
         .key.black {
@@ -297,23 +279,10 @@
             z-index: 2;
             border-radius: 0 0 5px 5px;
             border: 1px solid #0f171e;
-            box-shadow: 2px 4px 8px rgba(0,0,0,0.4);
-        }
-
-        .key.black:active, .key.black.active-key {
-
-            background: linear-gradient(to bottom, #2c3e50 0%, #ff4081 100%);
-            color: white;
         }
 
         /* صورت فلکی P */
-        .constellation-box {
-            position: relative;
-            width: 330px;
-            height: 310px;
-            margin: 15px auto;
-        }
-
+        .constellation-box { position: relative; width: 330px; height: 310px; margin: 15px auto; }
         .star-node {
             position: absolute;
             width: 20px;
@@ -332,6 +301,7 @@
         }
 
         .star-text {
+
             position: absolute;
             background: rgba(255, 255, 255, 0.95);
             color: #004d40;
@@ -343,10 +313,9 @@
             transition: opacity 0.5s ease;
             white-space: nowrap;
             z-index: 6;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
         }
 
-        /* Stranger Things */
+        /* Stranger Things & استیکرها */
         #stage5 { color: #fff !important; }
         .hawkins-sign {
             background: #3a0d10;
@@ -354,19 +323,47 @@
             border-radius: 10px;
             padding: 10px 24px;
             box-shadow: 0 0 20px rgba(229, 57, 53, 0.6);
-            margin-bottom: 15px;
+            margin-bottom: 12px;
         }
 
         .hawkins-sign span { font-size: 0.8rem; color: #ffcdd2; letter-spacing: 2px; }
         .hawkins-sign h2 { font-size: 2rem; color: #ffffff; letter-spacing: 4px; text-shadow: 0 0 10px #e53935; }
 
+        .st-stickers-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 8px;
+            max-width: 550px;
+            margin: 10px auto;
+        }
+
+        .st-badge {
+            background: rgba(20, 10, 15, 0.75);
+            border: 1px solid #ff1744;
+            color: #ffcdd2;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            box-shadow: 0 0 10px rgba(255, 23, 68, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .st-badge:hover {
+            transform: scale(1.1) rotate(-2deg);
+            background: #ff1744;
+            color: #ffffff;
+            box-shadow: 0 0 20px rgba(255, 23, 68, 0.8);
+        }
+
         .christmas-lights {
             background: rgba(0, 0, 0, 0.75);
-
             border: 1px dashed rgba(255, 255, 255, 0.4);
             border-radius: 12px;
             padding: 10px 20px;
-            margin-bottom: 15px;
+
+            margin-bottom: 12px;
         }
 
         .light-string { display: flex; justify-content: center; gap: 12px; margin-bottom: 6px; }
@@ -399,50 +396,85 @@
             margin: 10px 0;
         }
 
-        /* پلی‌لیست فوق‌العاده شیک با تزئینات بصرى کامل */
+        /* پلی‌لیست تزئین‌شده با پاپیون و المان‌های شیک */
+        .playlist-wrapper {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+        }
+
         .playlist-card {
-            background: rgba(20, 25, 45, 0.55);
+            background: rgba(15, 20, 38, 0.7);
             backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.18);
+            border: 2px solid rgba(255, 128, 171, 0.4);
             border-radius: 28px;
-            padding: 22px;
+            padding: 24px;
             width: 95%;
-            max-width: 460px;
+            max-width: 480px;
             max-height: 420px;
             overflow-y: auto;
-            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5), inset 0 1px 1px rgba(255, 255, 255, 0.2);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.6), 0 0 35px rgba(255, 64, 129, 0.2);
+            position: relative;
+        }
+
+        /* تزئینات اطراف پلی‌لیست */
+        .bow-decor {
+            position: absolute;
+            font-size: 2.8rem;
+
+            top: -25px;
+            z-index: 15;
+            filter: drop-shadow(0 4px 10px rgba(255, 64, 129, 0.5));
+            animation: bowBounce 2s infinite alternate ease-in-out;
+        }
+        .bow-decor.left { left: 10px; }
+        .bow-decor.right { right: 10px; }
+
+        @keyframes bowBounce {
+            0% { transform: translateY(0) rotate(-5deg); }
+            100% { transform: translateY(-8px) rotate(5deg); }
+        }
+
+        .floating-decor-icon {
+            position: absolute;
+            font-size: 1.8rem;
+            pointer-events: none;
+            animation: floatIcon 3s infinite alternate ease-in-out;
+        }
+
+        @keyframes floatIcon {
+            0% { transform: translateY(0) scale(1); }
+            100% { transform: translateY(-10px) scale(1.15); }
         }
 
         .playlist-card::-webkit-scrollbar { width: 6px; }
-        .playlist-card::-webkit-scrollbar-thumb { background: linear-gradient(180deg, #00bfa5, #00e676); border-radius: 10px; }
+        .playlist-card::-webkit-scrollbar-thumb { background: linear-gradient(180deg, #ff4081, #00bfa5); border-radius: 10px; }
 
         .track-item {
             display: flex;
             align-items: center;
-            background: rgba(255, 255, 255, 0.04);
+            background: rgba(255, 255, 255, 0.05);
             padding: 12px 18px;
-
             border-radius: 18px;
             margin-bottom: 12px;
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-            position: relative;
-            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
         }
 
         .track-item:hover {
-            background: rgba(0, 191, 165, 0.18);
-            transform: translateY(-3px) scale(1.01);
-            border-color: rgba(0, 191, 165, 0.5);
-            box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+            background: rgba(255, 64, 129, 0.2);
+            transform: translateY(-3px) scale(1.02);
+            border-color: #ff4081;
+            box-shadow: 0 8px 25px rgba(255, 64, 129, 0.3);
         }
 
         .track-cover {
             width: 48px;
             height: 48px;
             border-radius: 14px;
-            background: linear-gradient(135deg, #00bfa5, #1de9b6);
+            background: linear-gradient(135deg, #ff4081, #1de9b6);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -453,20 +485,16 @@
         }
 
         .track-info { text-align: right; flex-grow: 1; }
-        .track-title { font-weight: bold; color: #ffffff; font-size: 0.98rem; margin-bottom: 3px; }
-        .track-artist { font-size: 0.82rem; color: #b0bec5; font-weight: 300; }
+        .track-title { font-weight: bold; color: #ffffff; font-size: 1rem; margin-bottom: 3px; }
+        .track-artist { font-size: 0.82rem; color: #b0bec5; }
 
-        .music-note-icon {
-            font-size: 1.2rem;
-            color: #80deea;
-            opacity: 0.85;
-            transition: transform 0.3s ease;
-        }
+        .equalizer { display: flex; align-items: flex-end; gap: 3px; height: 18px; }
+        .eq-bar { width: 3px; background: #ff80ab; border-radius: 2px; animation: eqAnim 1.2s infinite ease-in-out alternate; }
+        .eq-bar:nth-child(1) { height: 40%; animation-delay: 0.1s; }
+        .eq-bar:nth-child(2) { height: 100%; animation-delay: 0.3s; }
+        .eq-bar:nth-child(3) { height: 60%; animation-delay: 0.2s; }
 
-        .track-item:hover .music-note-icon {
-            transform: scale(1.2) rotate(10deg);
-            color: #00e676;
-        }
+        @keyframes eqAnim { 0% { height: 20%; } 100% { height: 100%; background: #00e676; } }
 
         /* کیک تولد */
         .cake-container {
@@ -476,14 +504,10 @@
             animation: bounceCake 2s infinite alternate ease-in-out;
         }
 
-        @keyframes bounceCake { 
-            0% { transform: translateY(0) scale(1); } 
-            100% { transform: translateY(-14px) scale(1.03); } 
-        }
+        @keyframes bounceCake { 0% { transform: translateY(0); } 100% { transform: translateY(-14px); } }
 
         /* نامه */
         .letter-card {
-
             background: rgba(255, 255, 255, 0.96);
             padding: 32px;
             border-radius: 24px;
@@ -494,7 +518,7 @@
             border: 2px solid rgba(0, 191, 165, 0.3);
         }
 
-        .letter-card p { font-size: 1.12rem; line-height: 2.1; margin-bottom: 14px; color: #004d40; text-shadow: none; }
+        .letter-card p { font-size: 1.12rem; line-height: 2.1; margin-bottom: 14px; color: #004d40; }
         .signature { text-align: left; font-weight: bold; font-size: 1.25rem; color: #00bfa5; margin-top: 18px; direction: ltr; }
 
         .confetti, .falling-heart {
@@ -517,8 +541,10 @@
         <p>روز خاص ۱۷ سالگی رو انتخاب کن... 🌙✨</p>
         <div class="moon-wrapper">
             <div class="moon-glow-ring"></div>
+            <div class="moon-glow-ring-2"></div>
             <div class="moon-container">
                 <div class="moon-calendar">
+
                     <div class="cal-title">شهریور</div>
                     <div class="cal-grid">
                         <div>ش</div><div>ی</div><div>د</div><div>س</div><div>چ</div><div>پ</div><div>ج</div>
@@ -544,7 +570,6 @@
     <div class="stage" id="stage3">
         <h1>پیانوی گرند پارمیس 🎹</h1>
         <p>قطعه Fur Elise رو بنواز: <b style="color:#00bfa5">E4 - D#4 - E4 - D#4</b></p>
-
         
         <div class="piano-wrapper">
             <div class="piano-brand">PARMIS GRAND PIANO</div>
@@ -600,12 +625,24 @@
         <button class="btn" id="btn-stage4" style="display:none; margin-top:15px;" onclick="nextStage(5)">ورود به دنیای بعدی 🔮</button>
     </div>
 
-    <!-- مرحله ۵: Stranger Things -->
+    <!-- مرحله ۵: Stranger Things با استیکرها و متن جدید -->
     <div class="stage" id="stage5">
         <div class="hawkins-sign">
-
             <span>WELCOME TO</span>
             <h2>HAWKINS</h2>
+        </div>
+
+        <div class="st-stickers-grid">
+            <div class="st-badge">📻 FRIENDS DON'T LIE</div>
+            <div class="st-badge">🧇 011 WAFFLE</div>
+            <div class="st-badge">🧢 DUSTIN'S CAP</div>
+            <div class="st-badge">🚲 BOYS ON BIKES</div>
+            <div class="st-badge">🧭 COMPASS</div>
+            <div class="st-badge">📼 FOR WILL</div>
+            <div class="st-badge">🏷️ MOUTHBREATHER</div>
+            <div class="st-badge">🌀 THE UPSIDE DOWN</div>
+            <div class="st-badge">🤙 PROMISE?</div>
+            <div class="st-badge">⚡ SHE'S OUR FRIEND AND SHE'S CRAZY!</div>
         </div>
 
         <div class="christmas-lights">
@@ -619,76 +656,91 @@
 
         <div class="eleven-tag">011</div>
 
-        <div id="st-secret" style="display:none; margin:15px 0;">
-            <p style="color: #ff5252; font-weight: bold; font-size: 1.3rem;">"Turn around, Look at what you see..." 🎵</p>
+        <div id="st-secret" style="display:none; margin:15px 0; max-width: 500px;">
+            <p style="color: #ff5252; font-weight: bold; font-size: 1.2rem; margin-bottom: 10px;">"Turn around, Look at what you see..." 🎵</p>
+            <blockquote style="background: rgba(0,0,0,0.6); border-right: 4px solid #ff1744; padding: 12px; font-style: italic; color: #e0e0e0; font-size: 0.95rem; line-height: 1.6; text-align: left; direction: ltr;">
+                "Make mistakes, learn from 'em, and when life hurts you, because it will, remember the hurt. The hurt is good. It 
+
+means you're out of that cave."
+            </blockquote>
         </div>
 
         <button class="btn" id="btn-stage5" style="display:none; margin-top:10px;" onclick="nextStage(6)">ورود به پلی‌لیست 🎧</button>
     </div>
 
-    <!-- مرحله ۶: پلی‌لیست دیزاین شده و تزئین شده -->
+    <!-- مرحله ۶: پلی‌لیست تزئین شده همراه با پاپیون و المان‌های شیک (حذف متن توضیح) -->
     <div class="stage" id="stage6">
         <h1>پلی‌لیست اختصاصی ۱۷ سالگی 🎧</h1>
-        <p>مجموعه‌ای از محبوب‌ترین آهنگ‌های پارمیس ♡</p>
-        <div class="playlist-card">
-            
-            <div class="track-item">
-                <div class="track-cover">💿</div>
-                <div class="track-info">
-                    <div class="track-title">Dancing Queen</div>
-                    <div class="track-artist">ABBA</div>
+        
+        <div class="playlist-wrapper">
+            <!-- تزئینات پاپیون و المان‌های شناور دور کارت -->
+            <div class="bow-decor left">🎀</div>
+            <div class="bow-decor right">🎀</div>
+            <div class="floating-decor-icon" style="top:-30px; left:18%;">🌸</div>
+            <div class="floating-decor-icon" style="top:-30px; right:18%;">✨</div>
+            <div class="floating-decor-icon" style="bottom:-20px; left:10%;">🎶</div>
+            <div class="floating-decor-icon" style="bottom:-20px; right:10%;">🌷</div>
+
+            <div class="playlist-card">
+                
+                <div class="track-item">
+                    <div class="track-cover">💿</div>
+                    <div class="track-info">
+                        <div class="track-title">Dancing Queen</div>
+                        <div class="track-artist">ABBA</div>
+                    </div>
+                    <div class="equalizer"><div class="eq-bar"></div><div class="eq-bar"></div><div class="eq-bar"></div></div>
                 </div>
-                <div class="music-note-icon">🎵</div>
-            </div>
 
-            <div class="track-item">
-                <div class="track-cover">🎸</div>
-                <div class="track-info">
-                    <div class="track-title">betty</div>
-                    <div class="track-artist">Taylor Swift</div>
+                <div class="track-item">
+                    <div class="track-cover">🎸</div>
+                    <div class="track-info">
+                        <div class="track-title">betty</div>
+                        <div class="track-artist">Taylor Swift</div>
+                    </div>
+                    <div class="equalizer"><div class="eq-bar"></div><div class="eq-bar"></div><div class="eq-bar"></div></div>
                 </div>
-                <div class="music-note-icon">🎵</div>
-            </div>
 
-            <div class="track-item">
-                <div class="track-cover">✨</div>
-                <div class="track-info">
-                    <div class="track-title">Cruel Summer</div>
-                    <div class="track-artist">Taylor Swift</div>
+                <div class="track-item">
+                    <div class="track-cover">✨</div>
+                    <div class="track-info">
+                        <div class="track-title">Cruel Summer</div>
+                        <div class="track-artist">Taylor Swift</div>
+                    </div>
+                    <div class="equalizer"><div class="eq-bar"></div><div class="eq-bar"></div><div class="eq-bar"></div></div>
                 </div>
-                <div class="music-note-icon">🎵</div>
-            </div>
 
-            <div class="track-item">
-                <div class="track-cover">💜</div>
-                <div class="track-info">
-
-                    <div class="track-title">déjà vu</div>
-                    <div class="track-artist">Olivia Rodrigo</div>
+                <div class="track-item">
+                    <div class="track-cover">💜</div>
+                    <div class="track-info">
+                        <div class="track-title">déjà vu</div>
+                        <div class="track-artist">Olivia Rodrigo</div>
+                    </div>
+                    <div class="equalizer"><div class="eq-bar"></div><div class="eq-bar"></div><div class="eq-bar"></div></div>
                 </div>
-                <div class="music-note-icon">🎵</div>
-            </div>
 
-            <div class="track-item">
-                <div class="track-cover">🌌</div>
-                <div class="track-info">
-                    <div class="track-title">End of Beginning</div>
-                    <div class="track-artist">Djo</div>
+                <div class="track-item">
+
+                    <div class="track-cover">🌌</div>
+                    <div class="track-info">
+                        <div class="track-title">End of Beginning</div>
+                        <div class="track-artist">Djo</div>
+                    </div>
+                    <div class="equalizer"><div class="eq-bar"></div><div class="eq-bar"></div><div class="eq-bar"></div></div>
                 </div>
-                <div class="music-note-icon">🎵</div>
-            </div>
 
-            <div class="track-item">
-                <div class="track-cover">🎹</div>
-                <div class="track-info">
-                    <div class="track-title">Chateau (Feel Alright)</div>
-                    <div class="track-artist">Djo</div>
+                <div class="track-item">
+                    <div class="track-cover">🎹</div>
+                    <div class="track-info">
+                        <div class="track-title">Chateau (Feel Alright)</div>
+                        <div class="track-artist">Djo</div>
+                    </div>
+                    <div class="equalizer"><div class="eq-bar"></div><div class="eq-bar"></div><div class="eq-bar"></div></div>
                 </div>
-                <div class="music-note-icon">🎵</div>
-            </div>
 
+            </div>
         </div>
-        <button class="btn" style="margin-top:22px;" onclick="nextStage(7)">ورود به جشن 🎂</button>
+        <button class="btn" style="margin-top:25px;" onclick="nextStage(7)">ورود به جشن 🎂</button>
     </div>
 
     <!-- مرحله ۷: کیک تولد -->
@@ -716,6 +768,7 @@
         const canvas = document.getElementById('bg-canvas');
         const ctx = canvas.getContext('2d');
         let stars = [];
+        let shootingStars = [];
 
         function resizeCanvas() {
             canvas.width = window.innerWidth;
@@ -723,16 +776,28 @@
             initStars();
         }
 
-
         function initStars() {
             stars = [];
-            for(let i = 0; i < 200; i++) {
+            for(let i = 0; i < 220; i++) {
                 stars.push({
+
                     x: Math.random() * canvas.width,
                     y: Math.random() * canvas.height,
-                    radius: Math.random() * 1.7,
+                    radius: Math.random() * 1.8,
                     alpha: Math.random(),
                     speed: Math.random() * 0.02
+                });
+            }
+        }
+
+        function addShootingStar() {
+            if(Math.random() < 0.03) {
+                shootingStars.push({
+                    x: Math.random() * canvas.width,
+                    y: Math.random() * (canvas.height / 2),
+                    length: Math.random() * 80 + 40,
+                    speed: Math.random() * 10 + 6,
+                    alpha: 1
                 });
             }
         }
@@ -740,6 +805,7 @@
         function drawStars() {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
             ctx.fillStyle = "#ffffff";
+            
             stars.forEach(star => {
                 ctx.globalAlpha = star.alpha;
                 ctx.beginPath();
@@ -748,6 +814,23 @@
                 star.alpha += star.speed;
                 if (star.alpha > 1 || star.alpha < 0) star.speed = -star.speed;
             });
+
+            addShootingStar();
+            shootingStars.forEach((sStar, index) => {
+                ctx.strokeStyle = "rgba(128, 222, 234, " + sStar.alpha + ")";
+                ctx.lineWidth = 2;
+                ctx.beginPath();
+                ctx.moveTo(sStar.x, sStar.y);
+                ctx.lineTo(sStar.x - sStar.length, sStar.y + sStar.length);
+                ctx.stroke();
+
+                sStar.x += sStar.speed;
+                sStar.y += sStar.speed;
+                sStar.alpha -= 0.02;
+
+                if (sStar.alpha <= 0) shootingStars.splice(index, 1);
+            });
+
             requestAnimationFrame(drawStars);
         }
 
@@ -758,6 +841,7 @@
         function nextStage(stageNum) {
             document.querySelectorAll('.stage').forEach(el => el.classList.remove('active'));
             const target = document.getElementById(`stage${stageNum}`);
+
             if(target) target.classList.add('active');
 
             if(stageNum === 4) {
@@ -768,7 +852,7 @@
         }
 
         function triggerConfettiAndNext() {
-            for(let i = 0; i < 90; i++) {
+            for(let i = 0; i < 100; i++) {
                 const confetti = document.createElement('div');
                 confetti.className = 'confetti';
                 confetti.style.left = Math.random() * 100 + 'vw';
@@ -784,17 +868,17 @@
         }
 
         function startHeartRain() {
-            for(let i = 0; i < 45; i++) {
+            for(let i = 0; i < 50; i++) {
                 setTimeout(() => {
                     const heart = document.createElement('div');
                     heart.className = 'falling-heart';
-                    heart.innerText = ['💖', '🌸', '✨', '🤍'][Math.floor(Math.random()*4)];
+                    heart.innerText = ['💖', '🌸', '✨', '🤍', '🌙'][Math.floor(Math.random()*5)];
                     heart.style.left = Math.random() * 100 + 'vw';
                     heart.style.fontSize = '1.6rem';
                     heart.style.animationDuration = (Math.random() * 2 + 2) + 's';
                     document.body.appendChild(heart);
                     setTimeout(() => heart.remove(), 4000);
-                }, i * 140);
+                }, i * 130);
             }
         }
 
@@ -818,6 +902,7 @@
 
             const now = audioCtx.currentTime;
             
+
             gainNode.gain.setValueAtTime(0, now);
             gainNode.gain.linearRampToValueAtTime(0.6, now + 0.02);
             gainNode.gain.exponentialRampToValueAtTime(0.15, now + 0.4);
@@ -878,6 +963,7 @@
                     step++;
                 } else {
                     clearInterval(interval);
+
                     document.getElementById('star-desc').innerText = "صورت فلکی P مخصوص پارمیس ⭐";
                     document.getElementById('btn-stage4').style.display = 'inline-block';
                 }
