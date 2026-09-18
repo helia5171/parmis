@@ -17,18 +17,19 @@
             -webkit-tap-highlight-color: transparent;
         }
 
-        body, html {
+        html, body {
             width: 100%;
             height: 100%;
-            overflow: hidden;
+            overflow: hidden; /* جلوگیری از اسکرول و حرکت صفحه */
+            position: fixed;
+            top: 0;
+            left: 0;
             background: #04060f;
             color: #ffffff;
-            transition: background 1.5s ease;
-            position: fixed;
         }
 
         #bg-canvas {
-            position: fixed;
+            position: absolute;
             top: 0;
             left: 0;
             width: 100%;
@@ -50,22 +51,22 @@
             align-items: center;
             opacity: 0;
             pointer-events: none;
-            transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1), transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-            transform: scale(0.9);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+            transform: scale(0.95);
             text-align: center;
             padding: 15px;
-            overflow-y: auto;
+            box-sizing: border-box;
         }
 
         .stage.active {
-            opacity: 1;
 
+            opacity: 1;
             pointer-events: all;
             transform: scale(1);
         }
 
         h1 { 
-            font-size: 2rem; 
+            font-size: 1.6rem; 
             margin-bottom: 10px; 
             color: #80deea; 
             text-shadow: 0 0 15px rgba(128, 222, 234, 0.8); 
@@ -73,16 +74,16 @@
         }
 
         p { 
-            font-size: 1rem; 
-            margin-bottom: 15px; 
+            font-size: 0.95rem; 
+            margin-bottom: 12px; 
             color: #e0f7fa; 
-            line-height: 1.6; 
+            line-height: 1.5; 
             font-weight: 500;
         }
 
         .btn {
-            padding: 12px 32px;
-            font-size: 1rem;
+            padding: 12px 30px;
+            font-size: 0.95rem;
             background: linear-gradient(135deg, #00bfa5, #00897b, #1de9b6);
             background-size: 200% 200%;
             animation: gradientBtn 3s ease infinite;
@@ -90,7 +91,6 @@
             color: #fff;
             border-radius: 30px;
             cursor: pointer;
-            transition: all 0.3s ease;
             box-shadow: 0 0 20px rgba(0, 191, 165, 0.5);
             font-weight: bold;
         }
@@ -101,73 +101,54 @@
             100% { background-position: 0% 50%; }
         }
 
-        /* ماه بزرگ */
-        .moon-wrapper {
-            position: relative;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin-bottom: 15px;
-            animation: moonFloat 4s infinite alternate ease-in-out;
+        /* تقویم بزرگ مرحله اول (بدون ماه) */
+        .large-calendar-card {
+            background: rgba(16, 22, 42, 0.85);
+            backdrop-filter: blur(15px);
+            border: 2px solid rgba(128, 222, 234, 0.4);
+            border-radius: 24px;
+            padding: 20px 15px;
+            width: 100%;
+            max-width: 340px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6), 0 0 25px rgba(0, 191, 165, 0.2);
+            margin: 15px 0;
         }
 
-        @keyframes moonFloat {
-            0% { transform: translateY(0); }
-            100% { transform: translateY(-10px); }
+        .cal-title { 
+            font-weight: 900; 
+            font-size: 1.5rem; 
+            margin-bottom: 15px; 
+            color: #80deea; 
+            text-shadow: 0 0 10px #00bfa5;
+
         }
-
-        .moon-glow-ring {
-            position: absolute;
-            width: 300px;
-            height: 300px;
-
-            border-radius: 50%;
-            background: radial-gradient(circle, rgba(128, 222, 234, 0.3) 0%, rgba(0, 191, 165, 0.1) 45%, transparent 70%);
-        }
-
-        .moon-container {
-            position: relative;
-            width: 290px;
-            height: 290px;
-            border-radius: 50%;
-            background: radial-gradient(circle at 35% 30%, #ffffff 0%, #e0e0e0 30%, #9e9e9e 65%, #333333 100%);
-            box-shadow: inset -15px -15px 30px rgba(0,0,0,0.8), 0 0 40px rgba(255, 255, 255, 0.5);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            overflow: hidden;
-            border: 2px solid rgba(255, 255, 255, 0.85);
-            z-index: 2;
-        }
-
-        .moon-calendar {
-            z-index: 5;
-            background: rgba(8, 12, 26, 0.8);
-            backdrop-filter: blur(10px);
-            padding: 12px;
-            border-radius: 20px;
-            width: 90%;
-            border: 1px solid rgba(255, 255, 255, 0.3);
-        }
-
-        .cal-title { font-weight: 700; font-size: 1.2rem; margin-bottom: 5px; color: #80deea; }
 
         .cal-grid {
             display: grid;
             grid-template-columns: repeat(7, 1fr);
-            gap: 3px;
-            font-size: 0.75rem;
+            gap: 6px;
+            font-size: 0.85rem;
             text-align: center;
         }
 
-        .cal-day { padding: 4px 0; border-radius: 6px; }
+        .cal-grid div {
+            padding: 6px 0;
+            color: #b0bec5;
+        }
+
+        .cal-day { 
+            border-radius: 8px; 
+            color: #ffffff !important;
+            font-weight: 500;
+        }
 
         .cal-day.special {
             background: linear-gradient(135deg, #ff4081, #f50057);
-            color: #fff;
+            color: #fff !important;
             font-weight: bold;
-            box-shadow: 0 0 10px #ff4081;
+            box-shadow: 0 0 15px #ff4081;
             animation: pulse31 1.2s infinite alternate ease-in-out;
+            cursor: pointer;
         }
 
         @keyframes pulse31 {
@@ -175,53 +156,54 @@
             100% { transform: scale(1.15); }
         }
 
-        /* لمس ماه */
+        /* لمس ماه (مرحله ۲) */
         #interactive-moon {
-            width: 200px;
-            height: 200px;
+            width: 180px;
+            height: 180px;
             border-radius: 50%;
             background: radial-gradient(circle at 35% 35%, #ffffff 0%, #dcdcdc 50%, #8d8d8d 100%);
-
-            box-shadow: 0 0 50px rgba(255, 255, 255, 0.8);
+            box-shadow: 0 0 40px rgba(255, 255, 255, 0.8);
             cursor: pointer;
             border: 2px solid #ffffff;
+            margin: 15px 0;
         }
 
-        /* پیانو ریسپانسو */
+        /* پیانو */
         .piano-wrapper {
             width: 100%;
-            max-width: 500px;
+            max-width: 420px;
             background: #11171d;
-            padding: 15px 8px 10px 8px;
+            padding: 12px 6px 8px 6px;
             border-radius: 12px;
-            border-top: 5px solid #e74c3c;
+            border-top: 4px solid #e74c3c;
             position: relative;
         }
 
         .piano-brand {
             position: absolute;
-            top: 3px;
+
+            top: 2px;
             left: 50%;
             transform: translateX(-50%);
             color: #f1c40f;
-            font-size: 0.65rem;
+            font-size: 0.6rem;
             letter-spacing: 2px;
         }
 
-        .piano { display: flex; position: relative; height: 160px; width: 100%; justify-content: center; }
+        .piano { display: flex; position: relative; height: 140px; width: 100%; justify-content: center; }
 
         .key {
             flex: 1;
             height: 100%;
             background: #fff;
             border: 1px solid #ccc;
-            border-radius: 0 0 5px 5px;
+            border-radius: 0 0 4px 4px;
             display: flex;
             align-items: flex-end;
             justify-content: center;
-            padding-bottom: 8px;
+            padding-bottom: 6px;
             color: #555;
-            font-size: 0.65rem;
+            font-size: 0.6rem;
             font-weight: bold;
             position: relative;
             z-index: 1;
@@ -231,21 +213,20 @@
 
         .key.black {
             width: 7%;
-            height: 95px;
+            height: 85px;
             background: #222;
             color: #fff;
             position: absolute;
             z-index: 2;
-            border-radius: 0 0 4px 4px;
+            border-radius: 0 0 3px 3px;
         }
 
         /* صورت فلکی */
-        .constellation-box { position: relative; width: 280px; height: 260px; margin: 10px auto; }
+        .constellation-box { position: relative; width: 260px; height: 230px; margin: 10px auto; }
         .star-node {
-
             position: absolute;
-            width: 16px;
-            height: 16px;
+            width: 14px;
+            height: 14px;
             background: rgba(0, 150, 136, 0.3);
             border-radius: 50%;
             box-shadow: 0 0 8px #00bfa5;
@@ -253,15 +234,16 @@
             z-index: 5;
         }
 
-        .star-node.lit { background: #00bfa5; box-shadow: 0 0 20px #00bfa5; transform: scale(1.2); }
+        .star-node.lit { background: #00bfa5; box-shadow: 0 0 15px #00bfa5; transform: scale(1.2); }
 
         .star-text {
             position: absolute;
             background: #fff;
             color: #004d40;
-            padding: 4px 8px;
-            border-radius: 8px;
-            font-size: 0.75rem;
+            padding: 3px 6px;
+            border-radius: 6px;
+
+            font-size: 0.7rem;
             font-weight: bold;
             opacity: 0;
             transition: opacity 0.5s ease;
@@ -274,62 +256,62 @@
             background: #3a0d10;
             border: 2px solid #e53935;
             border-radius: 8px;
-            padding: 6px 16px;
-            margin-bottom: 8px;
+            padding: 4px 12px;
+            margin-bottom: 6px;
         }
 
-        .hawkins-sign span { font-size: 0.7rem; color: #ffcdd2; }
-        .hawkins-sign h2 { font-size: 1.4rem; color: #fff; }
+        .hawkins-sign span { font-size: 0.65rem; color: #ffcdd2; }
+        .hawkins-sign h2 { font-size: 1.2rem; color: #fff; }
 
         .st-stickers-grid {
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
-            gap: 5px;
+            gap: 4px;
             max-width: 100%;
-            margin: 8px auto;
+            margin: 6px auto;
         }
 
         .st-badge {
             background: rgba(20, 10, 15, 0.8);
             border: 1px solid #ff1744;
             color: #ffcdd2;
-            padding: 4px 8px;
-            border-radius: 12px;
-            font-size: 0.7rem;
+            padding: 3px 6px;
+            border-radius: 10px;
+            font-size: 0.65rem;
             font-weight: bold;
         }
 
         .christmas-lights {
             background: rgba(0, 0, 0, 0.8);
             border: 1px dashed rgba(255, 255, 255, 0.3);
-
-            border-radius: 8px;
-            padding: 6px 12px;
-            margin-bottom: 8px;
+            border-radius: 6px;
+            padding: 4px 10px;
+            margin-bottom: 6px;
         }
 
-        .light-string { display: flex; justify-content: center; gap: 8px; margin-bottom: 4px; }
-        .light { width: 8px; height: 8px; border-radius: 50%; }
+        .light-string { display: flex; justify-content: center; gap: 6px; margin-bottom: 2px; }
+        .light { width: 6px; height: 6px; border-radius: 50%; }
         .light.red { background: #ff1744; }
         .light.blue { background: #29b6f6; }
         .light.green { background: #00e676; }
         .light.yellow { background: #ffeb3b; }
 
-        .alphabet { font-size: 1.1rem; font-weight: bold; letter-spacing: 6px; color: #fff; }
+        .alphabet { font-size: 0.95rem; font-weight: bold; letter-spacing: 4px; color: #fff; }
 
         .eleven-tag {
-            font-size: 1.4rem;
+            font-size: 1.2rem;
             font-weight: 900;
             color: #fff;
+
             background: #000;
             border: 1px solid #fff;
-            padding: 2px 10px;
+            padding: 2px 8px;
             border-radius: 6px;
-            margin: 5px 0;
+            margin: 4px 0;
         }
 
-        .demogorgon-flower { font-size: 3.5rem; margin: 5px 0; }
+        .demogorgon-flower { font-size: 3rem; margin: 4px 0; }
 
         /* پلی‌لیست */
         .playlist-wrapper {
@@ -343,18 +325,18 @@
             background: rgba(15, 20, 38, 0.85);
             backdrop-filter: blur(15px);
             border: 1px solid rgba(255, 128, 171, 0.4);
-            border-radius: 20px;
-            padding: 15px;
+            border-radius: 18px;
+            padding: 12px;
             width: 100%;
-            max-width: 360px;
-            max-height: 350px;
+            max-width: 320px;
+            max-height: 290px;
             overflow-y: auto;
         }
 
         .bow-decor {
             position: absolute;
-            font-size: 2.2rem;
-            top: -20px;
+            font-size: 1.8rem;
+            top: -18px;
             z-index: 15;
         }
         .bow-decor.left { left: 0px; }
@@ -364,46 +346,46 @@
             display: flex;
             align-items: center;
             background: rgba(255, 255, 255, 0.05);
-
-            padding: 10px;
-            border-radius: 12px;
-            margin-bottom: 8px;
+            padding: 8px;
+            border-radius: 10px;
+            margin-bottom: 6px;
             border: 1px solid rgba(255, 255, 255, 0.1);
         }
 
         .track-cover {
-            width: 38px;
-            height: 38px;
-            border-radius: 10px;
+            width: 32px;
+            height: 32px;
+            border-radius: 8px;
             background: linear-gradient(135deg, #ff4081, #1de9b6);
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1rem;
-            margin-left: 10px;
+            font-size: 0.9rem;
+            margin-left: 8px;
             flex-shrink: 0;
         }
 
+
         .track-info { text-align: right; flex-grow: 1; }
-        .track-title { font-weight: bold; color: #fff; font-size: 0.85rem; }
-        .track-artist { font-size: 0.72rem; color: #b0bec5; }
+        .track-title { font-weight: bold; color: #fff; font-size: 0.8rem; }
+        .track-artist { font-size: 0.68rem; color: #b0bec5; }
 
         /* کیک و نامه */
-        .cake-container { font-size: 4.5rem; margin: 10px 0; }
+        .cake-container { font-size: 4rem; margin: 6px 0; }
 
         .letter-card {
             background: rgba(255, 255, 255, 0.96);
-            padding: 20px;
-            border-radius: 18px;
+            padding: 18px;
+            border-radius: 16px;
             width: 100%;
-            max-width: 360px;
+            max-width: 330px;
             text-align: right;
             color: #004d40;
             box-shadow: 0 10px 25px rgba(0,0,0,0.3);
         }
 
-        .letter-card p { font-size: 0.95rem; line-height: 1.8; margin-bottom: 10px; color: #004d40; }
-        .signature { text-align: left; font-weight: bold; font-size: 1.1rem; color: #00bfa5; margin-top: 10px; direction: ltr; }
+        .letter-card p { font-size: 0.88rem; line-height: 1.7; margin-bottom: 8px; color: #004d40; }
+        .signature { text-align: left; font-weight: bold; font-size: 1rem; color: #00bfa5; margin-top: 8px; direction: ltr; }
 
         .confetti, .falling-heart {
             position: fixed;
@@ -420,27 +402,37 @@
 
     <canvas id="bg-canvas"></canvas>
 
-    <!-- مرحله ۱ -->
+    <!-- مرحله ۱: فقط تقویم بزرگ مرکز صفحه -->
     <div class="stage active" id="stage1">
-        <p>روز خاص ۱۷ سالگی رو انتخاب کن... 🌙✨</p>
-        <div class="moon-wrapper">
-            <div class="moon-glow-ring"></div>
+        <p style="font-size: 1.05rem; font-weight: bold; color: #80deea;">روز خاص ۱۷ سالگی رو انتخاب کن... ✨</p>
+        
+        <div class="large-calendar-card">
+            <div class="cal-title">شهریور</div>
+            <div class="cal-grid">
+                <div style="color: #80deea; font-weight: bold;">ش</div>
+                <div style="color: #80deea; font-weight: bold;">ی</div>
+                <div style="color: #80deea; font-weight: bold;">د</div>
+                <div style="color: #80deea; font-weight: bold;">س</div>
+                <div style="color: #80deea; font-weight: bold;">چ</div>
+                <div style="color: #80deea; font-weight: bold;">پ</div>
+                <div style="color: #80deea; font-weight: bold;">ج</div>
+                
+                <div class="cal-day">۱</div><div class="cal-day">۲</div><div class="cal-day">۳</div>
+                <div class="cal-day">۴</div><div class="cal-day">۵</div><div class="cal-day">۶</div>
+                <div class="cal-day">۷</div><div class="cal-day">۸</div><div class="cal-day">۹</div>
+                <div class="cal-day">۱۰</div><div class="cal-day">۱۱</div><div class="cal-day">۱۲</div>
+                <div class="cal-day">۱۳</div><div class="cal-day">۱۴</div><div class="cal-day">۱۵</div>
+                <div class="cal-day">۱۶</div><div class="cal-day">۱۷</div><div class="cal-day">۱۸</div>
+                <div class="cal-day">۱۹</div><div class="cal-day">۲۰</div><div class="cal-day">۲۱</div>
+                <div class="cal-day">۲۲</div><div class="cal-day">۲۳</div><div class="cal-day">۲۴</div>
 
-            <div class="moon-container">
-                <div class="moon-calendar">
-                    <div class="cal-title">شهریور</div>
-                    <div class="cal-grid">
-                        <div>ش</div><div>ی</div><div>د</div><div>س</div><div>چ</div><div>پ</div><div>ج</div>
-                        <div>۱</div><div>۲</div><div>۳</div><div>۴</div><div>۵</div><div>۶</div><div>۷</div>
-                        <div>۸</div><div>۹</div><div>۱۰</div><div>۱۱</div><div>۱۲</div><div>۱۳</div><div>۱۴</div>
-                        <div>۱۵</div><div>۱۶</div><div>۱۷</div><div>۱۸</div><div>۱۹</div><div>۲۰</div><div>۲۱</div>
-                        <div>۲۲</div><div>۲۳</div><div>۲۴</div><div>۲۵</div><div>۲۶</div><div>۲۷</div><div>۲۸</div>
-                        <div>۲۹</div><div>۳۰</div><div class="cal-day special" onclick="nextStage(2)">۳۱</div>
-                    </div>
-                </div>
+                <div class="cal-day">۲۵</div><div class="cal-day">۲۶</div><div class="cal-day">۲۷</div>
+                <div class="cal-day">۲۸</div><div class="cal-day">۲۹</div><div class="cal-day">۳۰</div>
+                <div class="cal-day special" onclick="nextStage(2)">۳۱</div>
             </div>
         </div>
-        <p style="font-size: 0.85rem; color: #80deea;">تاریخ تولد پارمیس عزیز ♡</p>
+
+        <p style="font-size: 0.85rem; color: #b0bec5;">تاریخ تولد پارمیس عزیز ♡</p>
     </div>
 
     <!-- مرحله ۲ -->
@@ -452,7 +444,7 @@
     <!-- مرحله ۳ -->
     <div class="stage" id="stage3">
         <h1>پیانوی پارمیس 🎹</h1>
-        <p style="font-size:0.85rem;">بنواز: <b style="color:#00bfa5">E4 - D#4 - E4 - D#4</b></p>
+        <p style="font-size:0.8rem;">قطعه Fur Elise رو بنواز: <b style="color:#00bfa5">E4 - D#4 - E4 - D#4</b></p>
         
         <div class="piano-wrapper">
             <div class="piano-brand">PARMIS GRAND PIANO</div>
@@ -484,29 +476,29 @@
                 <div class="key" onclick="playNote(987.77, 'B5', this)">B5</div>
             </div>
         </div>
-        <button class="btn" style="margin-top:15px; font-size:0.8rem; padding:6px 18px;" onclick="nextStage(4)">رد شدن ➔</button>
-
+        <button class="btn" style="margin-top:12px; font-size:0.75rem; padding:6px 16px;" onclick="nextStage(4)">رد شدن ➔</button>
     </div>
 
     <!-- مرحله ۴ -->
     <div class="stage" id="stage4">
         <h1>آسمان پارمیس ⭐</h1>
-        <p id="star-desc" style="font-size:0.85rem;">تشکیل صورت فلکی...</p>
+        <p id="star-desc" style="font-size:0.8rem;">تشکیل صورت فلکی...</p>
         <div class="constellation-box" id="constellation">
             <svg style="position:absolute; width:100%; height:100%; top:0; left:0; z-index:1;">
-                <line id="line1" x1="80" y1="40" x2="80" y2="130" stroke="#00bfa5" stroke-width="2" style="display:none;"/>
-                <line id="line2" x1="80" y1="130" x2="80" y2="210" stroke="#00bfa5" stroke-width="2" style="display:none;"/>
-                <line id="line3" x1="80" y1="40" x2="170" y2="40" stroke="#00bfa5" stroke-width="2" style="display:none;"/>
-                <line id="line4" x1="170" y1="40" x2="170" y2="120" stroke="#00bfa5" stroke-width="2" style="display:none;"/>
-                <line id="line5" x1="170" y1="120" x2="80" y2="120" stroke="#00bfa5" stroke-width="2" style="display:none;"/>
+
+                <line id="line1" x1="75" y1="35" x2="75" y2="115" stroke="#00bfa5" stroke-width="2" style="display:none;"/>
+                <line id="line2" x1="75" y1="115" x2="75" y2="185" stroke="#00bfa5" stroke-width="2" style="display:none;"/>
+                <line id="line3" x1="75" y1="35" x2="155" y2="35" stroke="#00bfa5" stroke-width="2" style="display:none;"/>
+                <line id="line4" x1="155" y1="35" x2="155" y2="105" stroke="#00bfa5" stroke-width="2" style="display:none;"/>
+                <line id="line5" x1="155" y1="105" x2="75" y2="105" stroke="#00bfa5" stroke-width="2" style="display:none;"/>
             </svg>
-            <div class="star-node" id="star1" style="top:32px; left:72px;"></div>
-            <div class="star-node" id="star2" style="top:122px; left:72px;"></div>
-            <div class="star-node" id="star3" style="top:202px; left:72px;"></div>
-            <div class="star-node" id="star4" style="top:32px; left:162px;"></div>
-            <div class="star-node" id="star5" style="top:112px; left:162px;"></div>
+            <div class="star-node" id="star1" style="top:28px; left:68px;"></div>
+            <div class="star-node" id="star2" style="top:108px; left:68px;"></div>
+            <div class="star-node" id="star3" style="top:178px; left:68px;"></div>
+            <div class="star-node" id="star4" style="top:28px; left:148px;"></div>
+            <div class="star-node" id="star5" style="top:98px; left:148px;"></div>
         </div>
-        <button class="btn" id="btn-stage4" style="display:none; margin-top:10px;" onclick="nextStage(5)">ورود به دنیای بعدی 🔮</button>
+        <button class="btn" id="btn-stage4" style="display:none; margin-top:8px;" onclick="nextStage(5)">ورود به دنیای بعدی 🔮</button>
     </div>
 
     <!-- مرحله ۵ -->
@@ -540,20 +532,20 @@
 
         <div class="eleven-tag">011</div>
 
-        <div id="st-secret" style="display:none; margin:10px 0; max-width: 320px;">
-            <p style="color: #ff5252; font-weight: bold; font-size: 0.95rem;">"Turn around, Look at what you see..." 🎵</p>
-            <blockquote style="background: rgba(0,0,0,0.7); border-right: 3px solid #ff1744; padding: 8px; font-style: italic; color: #e0e0e0; font-size: 0.8rem; line-height: 1.5; text-align: left; direction: ltr;">
-
+        <div id="st-secret" style="display:none; margin:8px 0; max-width: 300px;">
+            <p style="color: #ff5252; font-weight: bold; font-size: 0.85rem;">"Turn around, Look at what you see..." 🎵</p>
+            <blockquote style="background: rgba(0,0,0,0.7); border-right: 3px solid #ff1744; padding: 6px; font-style: italic; color: #e0e0e0; font-size: 0.75rem; line-height: 1.4; text-align: left; direction: ltr;">
                 "Make mistakes, learn from 'em, and when life hurts you, because it will, remember the hurt. The hurt is good. It means you're out of that cave."
             </blockquote>
         </div>
 
-        <button class="btn" id="btn-stage5" style="display:none; margin-top:10px;" onclick="nextStage(6)">ورود به پلی‌لیست 🎧</button>
+        <button class="btn" id="btn-stage5" style="display:none; margin-top:8px;" onclick="nextStage(6)">ورود به پلی‌لیست 🎧</button>
     </div>
+
 
     <!-- مرحله ۶ -->
     <div class="stage" id="stage6">
-        <h1 style="font-size: 1.5rem;">پلی‌لیست ۱۷ سالگی 🎧</h1>
+        <h1 style="font-size: 1.3rem;">پلی‌لیست ۱۷ سالگی 🎧</h1>
         
         <div class="playlist-wrapper">
             <div class="bow-decor left">🎀</div>
@@ -602,7 +594,6 @@
                 </div>
 
                 <div class="track-item">
-
                     <div class="track-cover">🎹</div>
                     <div class="track-info">
                         <div class="track-title">Chateau (Feel Alright)</div>
@@ -611,17 +602,18 @@
                 </div>
 
             </div>
+
         </div>
-        <button class="btn" style="margin-top:15px;" onclick="nextStage(7)">ورود به جشن 🎂</button>
+        <button class="btn" style="margin-top:12px;" onclick="nextStage(7)">ورود به جشن 🎂</button>
     </div>
 
     <!-- مرحله ۷ -->
     <div class="stage" id="stage7">
-        <h1 style="color:#80deea; font-size: 1.6rem;">تولدت مبارک فرشته من! 🎉</h1>
+        <h1 style="color:#80deea; font-size: 1.4rem;">تولدت مبارک فرشته من! 🎉</h1>
         <div class="cake-container">🎂</div>
-        <h1 style="font-size: 3rem; color:#00bfa5;">17</h1>
+        <h1 style="font-size: 2.6rem; color:#00bfa5;">17</h1>
         <p>۱۷ سالگی قشنگت مبارک!</p>
-        <button class="btn" style="margin-top:10px;" onclick="nextStage(8)">خواندن نامه 💌</button>
+        <button class="btn" style="margin-top:8px;" onclick="nextStage(8)">خواندن نامه 💌</button>
     </div>
 
     <!-- مرحله ۸ -->
@@ -632,7 +624,7 @@
             <p>خیلی خوشحالم که تونستم یک سال دیگه هم پیشت باشم. امیدوارم همیشه توی تمام زندگیت به بهترین‌ها برسی و هر چی آرزو داری رو بتونی به دست بیاری.</p>
             <p>امیدوارم سالی پر از خنده و خوشحالی داشته باشی.</p>
             <p>خیلی دوست دارم بچم (:</p>
-            <div class="signature">Happy 17th, Parmis ♡<br><span style="font-size:0.95rem; color:#00bfa5;">— هلیا ♡</span></div>
+            <div class="signature">Happy 17th, Parmis ♡<br><span style="font-size:0.9rem; color:#00bfa5;">— هلیا ♡</span></div>
         </div>
     </div>
 
@@ -649,7 +641,7 @@
 
         function initStars() {
             stars = [];
-            for(let i = 0; i < 120; i++) {
+            for(let i = 0; i < 100; i++) {
                 stars.push({
                     x: Math.random() * canvas.width,
                     y: Math.random() * canvas.height,
@@ -661,7 +653,6 @@
         }
 
         function drawStars() {
-
             ctx.clearRect(0, 0, canvas.width, canvas.height);
             ctx.fillStyle = "#ffffff";
             
@@ -671,6 +662,7 @@
                 ctx.arc(star.x, star.y, star.radius, 0, Math.PI * 2);
                 ctx.fill();
                 star.alpha += star.speed;
+
                 if (star.alpha > 1 || star.alpha < 0) star.speed = -star.speed;
             });
 
@@ -691,7 +683,7 @@
         }
 
         function triggerConfettiAndNext() {
-            for(let i = 0; i < 60; i++) {
+            for(let i = 0; i < 50; i++) {
                 const confetti = document.createElement('div');
                 confetti.className = 'confetti';
                 confetti.style.left = Math.random() * 100 + 'vw';
@@ -707,13 +699,13 @@
         }
 
         function startHeartRain() {
-            for(let i = 0; i < 35; i++) {
+            for(let i = 0; i < 30; i++) {
                 setTimeout(() => {
                     const heart = document.createElement('div');
                     heart.className = 'falling-heart';
                     heart.innerText = ['💖', '🌸', '✨', '🤍', '🌙'][Math.floor(Math.random()*5)];
                     heart.style.left = Math.random() * 100 + 'vw';
-                    heart.style.fontSize = '1.3rem';
+                    heart.style.fontSize = '1.2rem';
                     heart.style.animationDuration = (Math.random() * 2 + 2) + 's';
                     document.body.appendChild(heart);
                     setTimeout(() => heart.remove(), 4000);
@@ -722,7 +714,6 @@
         }
 
         const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-
         let pianoSequence = [];
 
         function playNote(freq, noteName, element) {
@@ -732,6 +723,7 @@
             const gain = audioCtx.createGain();
 
             osc.type = 'triangle';
+
             osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
 
             const now = audioCtx.currentTime;
@@ -778,8 +770,8 @@
                     const label = document.createElement('div');
                     label.className = 'star-text';
                     label.innerText = item.text;
-                    label.style.top = (star.offsetTop - 25) + 'px';
-                    label.style.left = (star.offsetLeft - 15) + 'px';
+                    label.style.top = (star.offsetTop - 20) + 'px';
+                    label.style.left = (star.offsetLeft - 10) + 'px';
                     document.getElementById('constellation').appendChild(label);
                     setTimeout(() => label.style.opacity = 1, 50);
 
