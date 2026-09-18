@@ -20,8 +20,9 @@
             width: 100%;
             height: 100%;
             overflow: hidden;
-            background: #031b1e;
-            color: #fff;
+            background: #e0f7fa;
+            color: #2c3e50;
+            transition: background 1.5s ease, color 1.5s ease;
         }
 
         #bg-canvas {
@@ -31,7 +32,8 @@
             width: 100%;
             height: 100%;
             z-index: 1;
-            transition: background 1.5s ease;
+            transition: background 1.5s ease, opacity 1.5s ease;
+            background: linear-gradient(135deg, #e0f7fa 0%, #fff3e0 100%);
         }
 
         .ocean {
@@ -46,17 +48,18 @@
 
         .wave {
             animation: waveAnim 8s infinite linear;
-            fill: rgba(10, 60, 64, 0.7);
+            fill: rgba(128, 222, 234, 0.5);
         }
         .wave:nth-child(2) {
             animation: waveAnim 5s infinite linear reverse;
-            fill: rgba(2, 35, 38, 0.9);
+            fill: rgba(77, 208, 225, 0.7);
         }
 
         @keyframes waveAnim {
             0% { transform: translateX(0); }
             50% { transform: translateX(-25px); }
             100% { transform: translateX(0); }
+
         }
 
         .stage {
@@ -84,24 +87,24 @@
             transform: scale(1);
         }
 
-        h1 { font-size: 2.2rem; margin-bottom: 10px; text-shadow: 0 0 15px rgba(255,255,255,0.6); }
-        p { font-size: 1.1rem; margin-bottom: 15px; color: #b2ebf2; line-height: 1.8; }
+        h1 { font-size: 2.2rem; margin-bottom: 10px; color: #00695c; text-shadow: 0 0 10px rgba(255,255,255,0.8); }
+        p { font-size: 1.1rem; margin-bottom: 15px; color: #004d40; line-height: 1.8; font-weight: 500; }
 
         .btn {
             padding: 12px 35px;
             font-size: 1.1rem;
-            background: rgba(0, 230, 118, 0.15);
-            border: 1px solid rgba(0, 230, 118, 0.5);
+            background: #00bfa5;
+            border: none;
             color: #fff;
             border-radius: 30px;
             cursor: pointer;
-            backdrop-filter: blur(5px);
             transition: all 0.3s;
-            box-shadow: 0 0 15px rgba(0, 230, 118, 0.2);
+            box-shadow: 0 4px 15px rgba(0, 191, 165, 0.4);
+            font-weight: bold;
         }
         .btn:hover {
-            background: rgba(0, 230, 118, 0.35);
-            box-shadow: 0 0 25px rgba(0, 230, 118, 0.6);
+            background: #009688;
+            box-shadow: 0 6px 20px rgba(0, 150, 136, 0.6);
             transform: translateY(-2px);
         }
 
@@ -109,19 +112,19 @@
         .moon-calendar {
             width: 270px;
             height: 270px;
-            background: radial-gradient(circle at 30% 30%, #ffffff, #80deea, #004d40);
+            background: radial-gradient(circle at 30% 30%, #ffffff, #e0f7fa, #80deea);
             border-radius: 50%;
-            box-shadow: 0 0 40px rgba(0, 230, 118, 0.4), 0 0 80px rgba(0, 188, 212, 0.3);
+            box-shadow: 0 10px 30px rgba(0, 150, 136, 0.25);
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
             padding: 20px;
-            color: #00251a;
-            margin-bottom: 15px;
 
+            color: #004d40;
+            margin-bottom: 15px;
         }
-        .cal-title { font-weight: bold; font-size: 1.2rem; margin-bottom: 8px; color: #004d40; }
+        .cal-title { font-weight: bold; font-size: 1.2rem; margin-bottom: 8px; color: #00695c; }
         .cal-grid {
             display: grid;
             grid-template-columns: repeat(7, 1fr);
@@ -136,7 +139,7 @@
             cursor: pointer;
             transition: all 0.2s;
         }
-        .cal-day:hover { background: rgba(0,77,64,0.2); }
+        .cal-day:hover { background: rgba(0,150,136,0.15); }
         .cal-day.special {
             background: #ff4081;
             color: #fff;
@@ -150,38 +153,38 @@
         }
 
         #moon-reflection {
-            width: 80px;
-            height: 80px;
-            background: radial-gradient(circle, #fff 30%, rgba(128,222,234,0.8) 60%, transparent 100%);
+            width: 90px;
+            height: 90px;
+            background: radial-gradient(circle, #ffffff 40%, #80deea 80%, #4dd0e1 100%);
             border-radius: 50%;
-            box-shadow: 0 0 30px #fff, 0 0 60px #00e676;
+            box-shadow: 0 0 30px #ffffff, 0 0 50px #80deea;
             cursor: pointer;
-            margin-top: 130px;
+            margin-top: 120px;
             animation: pulseMoon 2.5s infinite alternate;
         }
         @keyframes pulseMoon {
-            0% { transform: scale(0.9); box-shadow: 0 0 20px #fff, 0 0 40px #00e676; }
-            100% { transform: scale(1.1); box-shadow: 0 0 40px #fff, 0 0 80px #00e676; }
+            0% { transform: scale(0.95); box-shadow: 0 0 20px #fff, 0 0 30px #80deea; }
+            100% { transform: scale(1.1); box-shadow: 0 0 35px #fff, 0 0 60px #4dd0e1; }
         }
 
         /* پیانوی کاملاً واقعی و عریض */
         .piano-wrapper {
             width: 95%;
             max-width: 850px;
-            background: linear-gradient(180deg, #181818 0%, #0a0a0a 100%);
+            background: linear-gradient(180deg, #2c3e50 0%, #1a252f 100%);
             padding: 25px 20px 15px 20px;
             border-radius: 16px;
-            border-top: 8px solid #a82323;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.9), 0 0 30px rgba(0, 230, 118, 0.15);
+            border-top: 8px solid #c0392b;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.25);
             position: relative;
         }
         .piano-brand {
             position: absolute;
             top: 6px;
+
             left: 50%;
             transform: translateX(-50%);
-
-            color: #d4af37;
+            color: #f1c40f;
             font-size: 0.75rem;
             letter-spacing: 4px;
             font-weight: bold;
@@ -196,43 +199,42 @@
         .key {
             flex: 1;
             height: 100%;
-            background: linear-gradient(to bottom, #f8f8f8 0%, #e0e0e0 85%, #ffffff 100%);
-            border: 1px solid #aaa;
+            background: linear-gradient(to bottom, #ffffff 0%, #f2f2f2 85%, #e6e6e6 100%);
+            border: 1px solid #ccc;
             border-radius: 0 0 6px 6px;
             cursor: pointer;
             display: flex;
             align-items: flex-end;
             justify-content: center;
             padding-bottom: 10px;
-            color: #555;
+            color: #7f8c8d;
             font-size: 0.8rem;
             font-weight: bold;
-            box-shadow: inset 0 -8px 12px rgba(0,0,0,0.15), 2px 0 5px rgba(0,0,0,0.1);
+            box-shadow: inset 0 -8px 12px rgba(0,0,0,0.08), 2px 0 5px rgba(0,0,0,0.05);
             transition: all 0.08s ease;
             position: relative;
             z-index: 1;
         }
         .key:active, .key.active-key {
-            background: linear-gradient(to bottom, #e0e0e0 0%, #00e676 100%);
+            background: linear-gradient(to bottom, #e0e0e0 0%, #00bfa5 100%);
             color: white;
-            box-shadow: inset 0 -2px 5px rgba(0,0,0,0.4);
+            box-shadow: inset 0 -2px 5px rgba(0,0,0,0.3);
             transform: translateY(3px);
         }
         .key.black {
             width: 6.5%;
             height: 125px;
-            background: linear-gradient(to bottom, #222 0%, #000 100%);
-            color: #888;
+            background: linear-gradient(to bottom, #34495e 0%, #2c3e50 100%);
+            color: #bdc3c7;
             position: absolute;
             z-index: 2;
             border-radius: 0 0 5px 5px;
-            box-shadow: 3px 5px 8px rgba(0,0,0,0.7), inset 0 -4px 6px rgba(255,255,255,0.2);
-            border: 1px solid #000;
+            box-shadow: 3px 5px 8px rgba(0,0,0,0.3);
+            border: 1px solid #1a252f;
         }
         .key.black:active, .key.black.active-key {
-            background: linear-gradient(to bottom, #333 0%, #ff4081 100%);
+            background: linear-gradient(to bottom, #2c3e50 0%, #ff4081 100%);
             color: white;
-            box-shadow: 1px 2px 4px rgba(0,0,0,0.9);
         }
 
         /* صورت فلکی */
@@ -240,39 +242,43 @@
             position: relative;
             width: 320px;
             height: 300px;
-            margin: 10px auto;
 
+            margin: 10px auto;
         }
         .star-node {
             position: absolute;
             width: 18px;
             height: 18px;
-            background: rgba(255, 255, 255, 0.3);
+            background: rgba(0, 150, 136, 0.3);
             border-radius: 50%;
-            box-shadow: 0 0 10px #fff;
+            box-shadow: 0 0 10px #00bfa5;
             transition: all 0.5s ease;
             z-index: 5;
         }
         .star-node.lit {
-            background: #64ffda;
-            box-shadow: 0 0 20px #64ffda, 0 0 30px #64ffda;
+            background: #00bfa5;
+            box-shadow: 0 0 20px #00bfa5, 0 0 30px #00e676;
             transform: scale(1.3);
         }
         .star-text {
             position: absolute;
             background: rgba(255, 255, 255, 0.95);
-            color: #00251a;
-            padding: 4px 10px;
+            color: #004d40;
+            padding: 5px 12px;
             border-radius: 12px;
-            font-size: 0.8rem;
+            font-size: 0.85rem;
             font-weight: bold;
             opacity: 0;
             transition: opacity 0.5s ease;
             white-space: nowrap;
             z-index: 6;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
         }
 
-        /* Stranger Things عناصر */
+        /* Stranger Things (تاریک و قرمز) */
+        #stage5 {
+            color: #fff !important;
+        }
         .hawkins-sign {
             background: #3e0e12;
             border: 3px solid #d32f2f;
@@ -297,6 +303,7 @@
         .light.red { background: #ff1744; box-shadow: 0 0 10px #ff1744; }
         .light.blue { background: #29b6f6; box-shadow: 0 0 10px #29b6f6; animation-delay: 0.3s; }
         .light.green { background: #00e676; box-shadow: 0 0 10px #00e676; animation-delay: 0.6s; }
+
         .light.yellow { background: #ffeb3b; box-shadow: 0 0 10px #ffeb3b; animation-delay: 0.9s; }
 
         @keyframes blinkLight { 0% { opacity: 0.3; } 100% { opacity: 1; } }
@@ -347,29 +354,29 @@
             font-size: 5.5rem;
             position: relative;
             margin: 10px 0;
-            filter: drop-shadow(0 0 20px rgba(0,230,118,0.5));
+            filter: drop-shadow(0 10px 15px rgba(0,0,0,0.1));
             animation: bounceCake 2s infinite alternate;
         }
         @keyframes bounceCake { 0% { transform: translateY(0); } 100% { transform: translateY(-10px); } }
 
         /* نامه */
         .letter-card {
-            background: rgba(2, 35, 38, 0.9);
-            border: 1px solid rgba(100, 255, 218, 0.4);
+            background: rgba(255, 255, 255, 0.9);
+            border: 1px solid rgba(0, 150, 136, 0.2);
             padding: 30px;
+
             border-radius: 20px;
             max-width: 500px;
-            backdrop-filter: blur(15px);
-            box-shadow: 0 0 40px rgba(0,0,0,0.8), 0 0 20px rgba(100, 255, 218, 0.2);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.08);
             text-align: right;
-
             transform: translateY(30px);
             opacity: 0;
             transition: all 1s ease 0.5s;
         }
         .stage.active .letter-card { transform: translateY(0); opacity: 1; }
-        .letter-card p { font-size: 1.1rem; color: #e0f2f1; line-height: 2; margin-bottom: 12px; }
-        .signature { text-align: left; font-weight: bold; font-size: 1.2rem; color: #64ffda; margin-top: 15px; direction: ltr; }
+        .letter-card p { font-size: 1.1rem; color: #004d40; line-height: 2; margin-bottom: 12px; }
+        .signature { text-align: left; font-weight: bold; font-size: 1.2rem; color: #00bfa5; margin-top: 15px; direction: ltr; }
 
         .confetti {
             position: fixed;
@@ -405,20 +412,20 @@
                 <div>۲۹</div><div>۳۰</div><div class="cal-day special" onclick="nextStage(2)">۳۱</div>
             </div>
         </div>
-        <p style="font-size: 0.9rem; color: #80deea;">تاریخ تولد ۱۷ سالگی پارمیس</p>
+        <p style="font-size: 0.9rem; color: #00695c;">تاریخ تولد ۱۷ سالگی پارمیس</p>
     </div>
 
     <!-- مرحله ۲: لمس ماه -->
     <div class="stage" id="stage2">
         <p>ماه روی آب رو لمس کن تا جادو بشه... 🌙✨</p>
         <div id="moon-reflection" onclick="triggerConfettiAndNext()"></div>
+
     </div>
 
     <!-- مرحله ۳: پیانوی کامل 2 اکتاو -->
     <div class="stage" id="stage3">
         <h1>پیانوی گرند پارمیس 🎹</h1>
-
-        <p>قطعه Fur Elise رو بنواز: <b style="color:#00e676">E4 - D#4 - E4 - D#4</b></p>
+        <p>قطعه Fur Elise رو بنواز: <b style="color:#00bfa5">E4 - D#4 - E4 - D#4</b></p>
         
         <div class="piano-wrapper">
             <div class="piano-brand">PARMIS GRAND PIANO</div>
@@ -461,10 +468,10 @@
         <p id="star-desc">در حال تشکیل صورت فلکی...</p>
         <div class="constellation-box" id="constellation">
             <svg style="position:absolute; width:100%; height:100%; top:0; left:0; z-index:1;">
-                <line id="line1" x1="50" y1="50" x2="160" y2="40" stroke="#64ffda" stroke-width="2" style="display:none;"/>
-                <line id="line2" x1="160" y1="40" x2="270" y2="100" stroke="#64ffda" stroke-width="2" style="display:none;"/>
-                <line id="line3" x1="270" y1="100" x2="210" y2="230" stroke="#64ffda" stroke-width="2" style="display:none;"/>
-                <line id="line4" x1="210" y1="230" x2="80" y2="200" stroke="#64ffda" stroke-width="2" style="display:none;"/>
+                <line id="line1" x1="50" y1="50" x2="160" y2="40" stroke="#00bfa5" stroke-width="2" style="display:none;"/>
+                <line id="line2" x1="160" y1="40" x2="270" y2="100" stroke="#00bfa5" stroke-width="2" style="display:none;"/>
+                <line id="line3" x1="270" y1="100" x2="210" y2="230" stroke="#00bfa5" stroke-width="2" style="display:none;"/>
+                <line id="line4" x1="210" y1="230" x2="80" y2="200" stroke="#00bfa5" stroke-width="2" style="display:none;"/>
             </svg>
             <div class="star-node" id="star1" style="top:40px; left:40px;"></div>
             <div class="star-node" id="star2" style="top:30px; left:150px;"></div>
@@ -472,11 +479,11 @@
             <div class="star-node" id="star4" style="top:220px; left:200px;"></div>
             <div class="star-node" id="star5" style="top:190px; left:70px;"></div>
         </div>
+
         <button class="btn" id="btn-stage4" style="display:none; margin-top:15px;" onclick="nextStage(5)">ورود به دنیای بعدی 🔮</button>
     </div>
 
-    <!-- مرحله ۵: Stranger Things -->
-
+    <!-- مرحله ۵: Stranger Things (تاریک) -->
     <div class="stage" id="stage5">
         <div class="hawkins-sign">
             <span>WELCOME TO</span>
@@ -504,9 +511,9 @@
 
     <!-- مرحله ۶: کیک تولد -->
     <div class="stage" id="stage6">
-        <h1 style="color:#64ffda;">تولدت مبارک فرشته من! 🎉</h1>
+        <h1 style="color:#00796b;">تولدت مبارک فرشته من! 🎉</h1>
         <div class="cake-container">🎂</div>
-        <h1 style="font-size: 3.5rem; color:#00e676; text-shadow: 0 0 20px #00e676;">17</h1>
+        <h1 style="font-size: 3.5rem; color:#00bfa5; text-shadow: 0 4px 10px rgba(0,0,0,0.1);">17</h1>
         <p>۱۷ سالگی قشنگت مبارک باشه!</p>
         <button class="btn" style="margin-top:15px;" onclick="nextStage(7)">خواندن نامه 💌</button>
     </div>
@@ -519,7 +526,7 @@
             <p>خیلی خوشحالم که تونستم یک سال دیگه هم پیشت باشم. امیدوارم همیشه توی تمام زندگیت به بهترین‌ها برسی و هر چی آرزو داری رو بتونی به دست بیاری.</p>
             <p>امیدوارم سالی پر از خنده و خوشحالی داشته باشی.</p>
             <p>خیلی دوست دارم بچم (:</p>
-            <div class="signature">Happy 17th, Parmis ♡<br><span style="font-size:1.1rem; color:#64ffda;">— هلیا ♡</span></div>
+            <div class="signature">Happy 17th, Parmis ♡<br><span style="font-size:1.1rem; color:#00bfa5;">— هلیا ♡</span></div>
         </div>
     </div>
 
@@ -529,6 +536,7 @@
         let stars = [];
 
         function resizeCanvas() {
+
             canvas.width = window.innerWidth;
             canvas.height = window.innerHeight;
             initStars();
@@ -549,7 +557,7 @@
 
         function drawStars() {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
-            ctx.fillStyle = "#64ffda";
+            ctx.fillStyle = "#00bfa5";
             stars.forEach(star => {
                 ctx.globalAlpha = star.alpha;
                 ctx.beginPath();
@@ -570,17 +578,27 @@
             const target = document.getElementById(`stage${stageNum}`);
             if(target) target.classList.add('active');
 
+            const bgCanvas = document.getElementById('bg-canvas');
+            const ocean = document.querySelector('.ocean');
+
             if(stageNum === 4) {
+                bgCanvas.style.background = "linear-gradient(135deg, #e8eaf6 0%, #e0f7fa 100%)";
+                ocean.style.filter = "none";
                 startConstellationAnimation();
             } else if(stageNum === 5) {
-                document.getElementById('bg-canvas').style.background = "#0d0205";
-                document.querySelector('.ocean').style.filter = "hue-rotate(280deg) brightness(0.2)";
+                // مرحله ۵: دارک و Stranger Things
+                bgCanvas.style.background = "#0d0205";
+                ocean.style.filter = "hue-rotate(280deg) brightness(0.2)";
             } else if(stageNum === 6) {
-                document.getElementById('bg-canvas').style.background = "radial-gradient(circle, #00332c 0%, #031b1e 100%)";
-                document.querySelector('.ocean').style.filter = "hue-rotate(120deg) brightness(0.8)";
+                bgCanvas.style.background = "linear-gradient(135deg, #fff3e0 0%, #e0f2f1 100%)";
+                ocean.style.filter = "none";
             } else if(stageNum === 7) {
-                document.getElementById('bg-canvas').style.background = "#031b1e";
-                document.querySelector('.ocean').style.filter = "none";
+                bgCanvas.style.background = "linear-gradient(135deg, #fce4ec 0%, #e0f7fa 100%)";
+                ocean.style.filter = "none";
+            } else {
+                bgCanvas.style.background = "linear-gradient(135deg, #e0f7fa 0%, #fff3e0 100%)";
+
+                ocean.style.filter = "none";
             }
         }
 
@@ -589,16 +607,14 @@
                 const confetti = document.createElement('div');
                 confetti.className = 'confetti';
                 confetti.style.left = Math.random() * 100 + 'vw';
-                confetti.style.backgroundColor = ['#ff4081', '#64ffda', '#00e676', '#ffeb3b', '#00bcd4'][Math.floor(Math.random()*5)];
+                confetti.style.backgroundColor = ['#ff4081', '#00bfa5', '#ffb74d', '#4dd0e1', '#ba68c8'][Math.floor(Math.random()*5)];
                 confetti.style.animationDuration = (Math.random() * 2 + 1.5) + 's';
                 document.body.appendChild(confetti);
                 setTimeout(() => confetti.remove(), 3000);
-
             }
             setTimeout(() => nextStage(3), 1200);
         }
 
-        // موتور صوتی پیشرفته پیانو با لایه‌بندی فرکانسی و پدال Sustaining
         const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
         let pianoSequence = [];
 
@@ -611,7 +627,6 @@
             const oscHarmonic = audioCtx.createOscillator();
             const gainNode = audioCtx.createGain();
 
-            // ترکیب دو فرکانس برای صدای طنین‌انداز پیانوی واقعی
             oscPrimary.type = 'triangle';
             oscPrimary.frequency.setValueAtTime(freq, audioCtx.currentTime);
 
@@ -620,11 +635,10 @@
 
             const now = audioCtx.currentTime;
             
-            // تنظیم طنین صدا
             gainNode.gain.setValueAtTime(0, now);
-            gainNode.gain.linearRampToValueAtTime(0.6, now + 0.02); // Attack سریع ضربه کلید
-            gainNode.gain.exponentialRampToValueAtTime(0.15, now + 0.4); // Decay
-            gainNode.gain.exponentialRampToValueAtTime(0.0001, now + 3.0); // Sustain طویل بدون قطع شدن ناگهانی
+            gainNode.gain.linearRampToValueAtTime(0.6, now + 0.02);
+            gainNode.gain.exponentialRampToValueAtTime(0.15, now + 0.4);
+            gainNode.gain.exponentialRampToValueAtTime(0.0001, now + 3.0);
 
             oscPrimary.connect(gainNode);
             oscHarmonic.connect(gainNode);
@@ -641,9 +655,9 @@
             pianoSequence.push(noteName);
             if(pianoSequence.length > 4) pianoSequence.shift();
 
-            // بررسی نواختن قطعه Fur Elise
             if(pianoSequence.join('-') === 'E4-D#4-E4-D#4' || pianoSequence.join('-') === 'E5-D#5-E5-D#5') {
                 setTimeout(() => nextStage(4), 800);
+
             }
         }
 
@@ -654,7 +668,6 @@
                 { id: 'star3', text: 'بااستعداد و هنرمند 🎹', line: 'line2' },
                 { id: 'star4', text: 'مهربون و عمیق مثل دریا 🌊', line: 'line3' },
                 { id: 'star5', text: 'قشنگ‌ترین دختر ۱۷ ساله 👑', line: 'line4' }
-
             ];
 
             let step = 0;
