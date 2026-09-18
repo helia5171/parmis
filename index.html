@@ -84,8 +84,8 @@
             transform: scale(1);
         }
 
-        h1 { font-size: 2.5rem; margin-bottom: 10px; text-shadow: 0 0 15px rgba(255,255,255,0.6); }
-        p { font-size: 1.2rem; margin-bottom: 20px; color: #b2ebf2; line-height: 1.8; }
+        h1 { font-size: 2.2rem; margin-bottom: 10px; text-shadow: 0 0 15px rgba(255,255,255,0.6); }
+        p { font-size: 1.1rem; margin-bottom: 15px; color: #b2ebf2; line-height: 1.8; }
 
         .btn {
             padding: 12px 35px;
@@ -164,55 +164,75 @@
             100% { transform: scale(1.1); box-shadow: 0 0 40px #fff, 0 0 80px #00e676; }
         }
 
-        /* پیانو واقعی */
-        .piano-container {
-            background: #111;
-            padding: 20px 20px 10px 20px;
-            border-radius: 12px;
-            border: 4px solid #333;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.8), 0 0 15px rgba(0, 230, 118, 0.2);
+        /* پیانوی کاملاً واقعی و عریض */
+        .piano-wrapper {
+            width: 95%;
+            max-width: 850px;
+            background: linear-gradient(180deg, #181818 0%, #0a0a0a 100%);
+            padding: 25px 20px 15px 20px;
+            border-radius: 16px;
+            border-top: 8px solid #a82323;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.9), 0 0 30px rgba(0, 230, 118, 0.15);
+            position: relative;
+        }
+        .piano-brand {
+            position: absolute;
+            top: 6px;
+            left: 50%;
+            transform: translateX(-50%);
+
+            color: #d4af37;
+            font-size: 0.75rem;
+            letter-spacing: 4px;
+            font-weight: bold;
         }
         .piano {
             display: flex;
             position: relative;
-            height: 180px;
+            height: 210px;
+            width: 100%;
+            justify-content: center;
         }
         .key {
-            width: 42px;
+            flex: 1;
             height: 100%;
-
-            background: linear-gradient(to bottom, #eeeeee 0%, #ffffff 100%);
-            border: 1px solid #bbb;
-            border-radius: 0 0 5px 5px;
+            background: linear-gradient(to bottom, #f8f8f8 0%, #e0e0e0 85%, #ffffff 100%);
+            border: 1px solid #aaa;
+            border-radius: 0 0 6px 6px;
             cursor: pointer;
             display: flex;
             align-items: flex-end;
             justify-content: center;
-            padding-bottom: 12px;
-            color: #444;
-            font-size: 0.85rem;
+            padding-bottom: 10px;
+            color: #555;
+            font-size: 0.8rem;
             font-weight: bold;
-            box-shadow: inset 0 -5px 10px rgba(0,0,0,0.1);
-            transition: all 0.1s ease;
+            box-shadow: inset 0 -8px 12px rgba(0,0,0,0.15), 2px 0 5px rgba(0,0,0,0.1);
+            transition: all 0.08s ease;
+            position: relative;
+            z-index: 1;
         }
         .key:active, .key.active-key {
-            background: #00e676;
+            background: linear-gradient(to bottom, #e0e0e0 0%, #00e676 100%);
             color: white;
-            box-shadow: inset 0 -2px 5px rgba(0,0,0,0.2);
-            transform: translateY(2px);
+            box-shadow: inset 0 -2px 5px rgba(0,0,0,0.4);
+            transform: translateY(3px);
         }
         .key.black {
-            width: 26px;
-            height: 110px;
-            background: linear-gradient(to bottom, #333 0%, #000 100%);
-            color: white;
+            width: 6.5%;
+            height: 125px;
+            background: linear-gradient(to bottom, #222 0%, #000 100%);
+            color: #888;
             position: absolute;
             z-index: 2;
-            border-radius: 0 0 4px 4px;
-            box-shadow: 2px 3px 5px rgba(0,0,0,0.5);
+            border-radius: 0 0 5px 5px;
+            box-shadow: 3px 5px 8px rgba(0,0,0,0.7), inset 0 -4px 6px rgba(255,255,255,0.2);
+            border: 1px solid #000;
         }
         .key.black:active, .key.black.active-key {
-            background: #ff4081;
+            background: linear-gradient(to bottom, #333 0%, #ff4081 100%);
+            color: white;
+            box-shadow: 1px 2px 4px rgba(0,0,0,0.9);
         }
 
         /* صورت فلکی */
@@ -221,6 +241,7 @@
             width: 320px;
             height: 300px;
             margin: 10px auto;
+
         }
         .star-node {
             position: absolute;
@@ -241,7 +262,6 @@
             position: absolute;
             background: rgba(255, 255, 255, 0.95);
             color: #00251a;
-
             padding: 4px 10px;
             border-radius: 12px;
             font-size: 0.8rem;
@@ -302,7 +322,6 @@
             filter: drop-shadow(0 0 20px #ff1744);
             animation: floatGorgon 2s infinite alternate ease-in-out;
         }
-
         @keyframes floatGorgon {
             0% { transform: translateY(0) scale(1); }
             100% { transform: translateY(-10px) scale(1.1); }
@@ -311,7 +330,7 @@
         .st-quote-1 {
             color: #ff5252;
             font-weight: bold;
-            font-size: 1.6rem;
+            font-size: 1.5rem;
             letter-spacing: 2px;
             text-shadow: 0 0 15px #ff1744;
             margin-bottom: 8px;
@@ -343,6 +362,7 @@
             backdrop-filter: blur(15px);
             box-shadow: 0 0 40px rgba(0,0,0,0.8), 0 0 20px rgba(100, 255, 218, 0.2);
             text-align: right;
+
             transform: translateY(30px);
             opacity: 0;
             transition: all 1s ease 0.5s;
@@ -363,7 +383,6 @@
     </style>
 </head>
 <body>
-
 
     <canvas id="bg-canvas"></canvas>
 
@@ -395,29 +414,46 @@
         <div id="moon-reflection" onclick="triggerConfettiAndNext()"></div>
     </div>
 
-    <!-- مرحله ۳: پیانوی واقع‌گرایانه -->
+    <!-- مرحله ۳: پیانوی کامل 2 اکتاو -->
     <div class="stage" id="stage3">
-        <h1>پیانوی پارمیس 🎹</h1>
-        <p>آهنگ Fur Elise رو بنواز: <br><b style="color:#00e676">می (E) - دیز (D#) - می (E) - دیز (D#)</b></p>
-        <div class="piano-container">
+        <h1>پیانوی گرند پارمیس 🎹</h1>
+
+        <p>قطعه Fur Elise رو بنواز: <b style="color:#00e676">E4 - D#4 - E4 - D#4</b></p>
+        
+        <div class="piano-wrapper">
+            <div class="piano-brand">PARMIS GRAND PIANO</div>
             <div class="piano">
-                <div class="key" onclick="playNote(261.63, 'C', this)">C</div>
-                <div class="key black" style="left: 29px;" onclick="playNote(277.18, 'C#', this)"></div>
-                <div class="key" onclick="playNote(293.66, 'D', this)">D</div>
-                <div class="key black" style="left: 71px;" onclick="playNote(311.13, 'D#', this)">D#</div>
-                <div class="key" onclick="playNote(329.63, 'E', this)">E</div>
-                <div class="key" onclick="playNote(349.23, 'F', this)">F</div>
-                <div class="key black" style="left: 155px;" onclick="playNote(369.99, 'F#', this)"></div>
-                <div class="key" onclick="playNote(392.00, 'G', this)">G</div>
-                <div class="key black" style="left: 197px;" onclick="playNote(415.30, 'G#', this)"></div>
-                <div class="key" onclick="playNote(440.00, 'A', this)">A</div>
-                <div class="key black" style="left: 239px;" onclick="playNote(466.16, 'A#', this)"></div>
-                <div class="key" onclick="playNote(493.88, 'B', this)">B</div>
+                <!-- اکتاو اول -->
+                <div class="key" onclick="playNote(261.63, 'C4', this)">C4</div>
+                <div class="key black" style="left: 4.8%;" onclick="playNote(277.18, 'C#4', this)"></div>
+                <div class="key" onclick="playNote(293.66, 'D4', this)">D4</div>
+                <div class="key black" style="left: 11.9%;" onclick="playNote(311.13, 'D#4', this)">D#4</div>
+                <div class="key" onclick="playNote(329.63, 'E4', this)">E4</div>
+                <div class="key" onclick="playNote(349.23, 'F4', this)">F4</div>
+                <div class="key black" style="left: 26.2%;" onclick="playNote(369.99, 'F#4', this)"></div>
+                <div class="key" onclick="playNote(392.00, 'G4', this)">G4</div>
+                <div class="key black" style="left: 33.3%;" onclick="playNote(415.30, 'G#4', this)"></div>
+                <div class="key" onclick="playNote(440.00, 'A4', this)">A4</div>
+                <div class="key black" style="left: 40.4%;" onclick="playNote(466.16, 'A#4', this)"></div>
+                <div class="key" onclick="playNote(493.88, 'B4', this)">B4</div>
+
+                <!-- اکتاو دوم -->
+                <div class="key" onclick="playNote(523.25, 'C5', this)">C5</div>
+                <div class="key black" style="left: 54.7%;" onclick="playNote(554.37, 'C#5', this)"></div>
+                <div class="key" onclick="playNote(587.33, 'D5', this)">D5</div>
+                <div class="key black" style="left: 61.8%;" onclick="playNote(622.25, 'D#5', this)"></div>
+                <div class="key" onclick="playNote(659.25, 'E5', this)">E5</div>
+                <div class="key" onclick="playNote(698.46, 'F5', this)">F5</div>
+                <div class="key black" style="left: 76.1%;" onclick="playNote(739.99, 'F#5', this)"></div>
+                <div class="key" onclick="playNote(783.99, 'G5', this)">G5</div>
+                <div class="key black" style="left: 83.2%;" onclick="playNote(830.61, 'G#5', this)"></div>
+                <div class="key" onclick="playNote(880.00, 'A5', this)">A5</div>
+                <div class="key black" style="left: 90.3%;" onclick="playNote(932.33, 'A#5', this)"></div>
+                <div class="key" onclick="playNote(987.77, 'B5', this)">B5</div>
             </div>
         </div>
         <button class="btn" style="margin-top:20px; font-size:0.85rem; padding:6px 18px;" onclick="nextStage(4)">رد شدن ➔</button>
     </div>
-
 
     <!-- مرحله ۴: صورت فلکی -->
     <div class="stage" id="stage4">
@@ -439,7 +475,8 @@
         <button class="btn" id="btn-stage4" style="display:none; margin-top:15px;" onclick="nextStage(5)">ورود به دنیای بعدی 🔮</button>
     </div>
 
-    <!-- مرحله ۵: Stranger Things کامل -->
+    <!-- مرحله ۵: Stranger Things -->
+
     <div class="stage" id="stage5">
         <div class="hawkins-sign">
             <span>WELCOME TO</span>
@@ -458,7 +495,7 @@
         <div class="eleven-tag">011</div>
 
         <div id="st-secret" style="display:none; margin:15px 0;">
-            <p class="st-quote-1">"Friends Don't Lie."</p>
+            <p class="st-quote-1">"Turn around, Look at what you see..." 🎵</p>
             <p class="st-quote-2">"If we're dying, we're dying together."</p>
         </div>
 
@@ -475,7 +512,6 @@
     </div>
 
     <!-- مرحله ۷: نامه -->
-
     <div class="stage" id="stage7">
         <div class="letter-card">
             <p>سلام فرشتم،</p>
@@ -535,7 +571,6 @@
             if(target) target.classList.add('active');
 
             if(stageNum === 4) {
-
                 startConstellationAnimation();
             } else if(stageNum === 5) {
                 document.getElementById('bg-canvas').style.background = "#0d0205";
@@ -558,11 +593,12 @@
                 confetti.style.animationDuration = (Math.random() * 2 + 1.5) + 's';
                 document.body.appendChild(confetti);
                 setTimeout(() => confetti.remove(), 3000);
+
             }
             setTimeout(() => nextStage(3), 1200);
         }
 
-        // سیستم صدای پیانوی واقعی با افت صدای طبیعی (Envelope)
+        // موتور صوتی پیشرفته پیانو با لایه‌بندی فرکانسی و پدال Sustaining
         const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
         let pianoSequence = [];
 
@@ -571,24 +607,33 @@
                 audioCtx.resume();
             }
 
-            const osc = audioCtx.createOscillator();
+            const oscPrimary = audioCtx.createOscillator();
+            const oscHarmonic = audioCtx.createOscillator();
             const gainNode = audioCtx.createGain();
 
-            // موج مثلثی برای شبیه‌سازی صدای سازهای زهی و پیانو
-            osc.type = 'triangle';
-            osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
+            // ترکیب دو فرکانس برای صدای طنین‌انداز پیانوی واقعی
+            oscPrimary.type = 'triangle';
+            oscPrimary.frequency.setValueAtTime(freq, audioCtx.currentTime);
 
-            // افت صدای تدریجی (Sustain & Decay)
+            oscHarmonic.type = 'sine';
+            oscHarmonic.frequency.setValueAtTime(freq * 2, audioCtx.currentTime);
+
             const now = audioCtx.currentTime;
+            
+            // تنظیم طنین صدا
             gainNode.gain.setValueAtTime(0, now);
-            gainNode.gain.linearRampToValueAtTime(0.5, now + 0.03); // ضربه کلید
-            gainNode.gain.exponentialRampToValueAtTime(0.0001, now + 2.5); // رزونانس طولانی پیانو
+            gainNode.gain.linearRampToValueAtTime(0.6, now + 0.02); // Attack سریع ضربه کلید
+            gainNode.gain.exponentialRampToValueAtTime(0.15, now + 0.4); // Decay
+            gainNode.gain.exponentialRampToValueAtTime(0.0001, now + 3.0); // Sustain طویل بدون قطع شدن ناگهانی
 
-            osc.connect(gainNode);
+            oscPrimary.connect(gainNode);
+            oscHarmonic.connect(gainNode);
             gainNode.connect(audioCtx.destination);
 
-            osc.start(now);
-            osc.stop(now + 2.5);
+            oscPrimary.start(now);
+            oscHarmonic.start(now);
+            oscPrimary.stop(now + 3.0);
+            oscHarmonic.stop(now + 3.0);
 
             element.classList.add('active-key');
             setTimeout(() => element.classList.remove('active-key'), 300);
@@ -596,9 +641,8 @@
             pianoSequence.push(noteName);
             if(pianoSequence.length > 4) pianoSequence.shift();
 
-
-            // چک کردن نت قطعه Fur Elise: E - D# - E - D#
-            if(pianoSequence.join('-') === 'E-D#-E-D#') {
+            // بررسی نواختن قطعه Fur Elise
+            if(pianoSequence.join('-') === 'E4-D#4-E4-D#4' || pianoSequence.join('-') === 'E5-D#5-E5-D#5') {
                 setTimeout(() => nextStage(4), 800);
             }
         }
@@ -610,6 +654,7 @@
                 { id: 'star3', text: 'بااستعداد و هنرمند 🎹', line: 'line2' },
                 { id: 'star4', text: 'مهربون و عمیق مثل دریا 🌊', line: 'line3' },
                 { id: 'star5', text: 'قشنگ‌ترین دختر ۱۷ ساله 👑', line: 'line4' }
+
             ];
 
             let step = 0;
