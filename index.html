@@ -32,7 +32,7 @@
             width: 100%;
             height: 100%;
             z-index: 1;
-            transition: background 1.5s ease, opacity 1.5s ease;
+            transition: background 1.5s ease;
             background: linear-gradient(135deg, #e0f7fa 0%, #fff3e0 100%);
         }
 
@@ -167,7 +167,7 @@
             100% { transform: scale(1.1); box-shadow: 0 0 35px #fff, 0 0 60px #4dd0e1; }
         }
 
-        /* پیانوی کاملاً واقعی و عریض */
+        /* پیانو */
         .piano-wrapper {
             width: 95%;
             max-width: 850px;
@@ -237,7 +237,7 @@
             color: white;
         }
 
-        /* صورت فلکی */
+        /* صورت فلکی (شکل P) */
         .constellation-box {
             position: relative;
             width: 320px;
@@ -275,10 +275,8 @@
             box-shadow: 0 4px 10px rgba(0,0,0,0.1);
         }
 
-        /* Stranger Things (تاریک و قرمز) */
-        #stage5 {
-            color: #fff !important;
-        }
+        /* Stranger Things */
+        #stage5 { color: #fff !important; }
         .hawkins-sign {
             background: #3e0e12;
             border: 3px solid #d32f2f;
@@ -303,7 +301,6 @@
         .light.red { background: #ff1744; box-shadow: 0 0 10px #ff1744; }
         .light.blue { background: #29b6f6; box-shadow: 0 0 10px #29b6f6; animation-delay: 0.3s; }
         .light.green { background: #00e676; box-shadow: 0 0 10px #00e676; animation-delay: 0.6s; }
-
         .light.yellow { background: #ffeb3b; box-shadow: 0 0 10px #ffeb3b; animation-delay: 0.9s; }
 
         @keyframes blinkLight { 0% { opacity: 0.3; } 100% { opacity: 1; } }
@@ -334,24 +331,38 @@
             100% { transform: translateY(-10px) scale(1.1); }
         }
 
-        .st-quote-1 {
-            color: #ff5252;
-            font-weight: bold;
-            font-size: 1.5rem;
-            letter-spacing: 2px;
-            text-shadow: 0 0 15px #ff1744;
-            margin-bottom: 8px;
+        .st-quote-1 { color: #ff5252; font-weight: bold; font-size: 1.5rem; letter-spacing: 2px; text-shadow: 0 0 15px #ff1744; margin-bottom: 8px; }
+        .st-quote-2 { color: #80deea; font-style: italic; font-size: 1.1rem; text-shadow: 0 0 10px rgba(128,222,234,0.5); }
+
+        /* پلی لیست 17 سالگی */
+        .playlist-card {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 20px;
+            padding: 20px;
+            width: 90%;
+            max-width: 420px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
         }
-        .st-quote-2 {
-            color: #80deea;
-            font-style: italic;
-            font-size: 1.1rem;
-            text-shadow: 0 0 10px rgba(128,222,234,0.5);
+        .track-item {
+            display: flex;
+            align-items: center;
+            background: #ffffff;
+            padding: 10px 15px;
+            border-radius: 12px;
+            margin-bottom: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            transition: transform 0.2s;
         }
+        .track-item:hover { transform: translateX(-5px); }
+        .track-icon { font-size: 1.5rem; margin-left: 12px; }
+        .track-info { text-align: right; flex-grow: 1; }
+        .track-title { font-weight: bold; color: #00695c; font-size: 0.95rem; }
+        .track-artist { font-size: 0.8rem; color: #78909c; }
 
         /* کیک */
         .cake-container {
             font-size: 5.5rem;
+
             position: relative;
             margin: 10px 0;
             filter: drop-shadow(0 10px 15px rgba(0,0,0,0.1));
@@ -361,10 +372,9 @@
 
         /* نامه */
         .letter-card {
-            background: rgba(255, 255, 255, 0.9);
+            background: rgba(255, 255, 255, 0.95);
             border: 1px solid rgba(0, 150, 136, 0.2);
             padding: 30px;
-
             border-radius: 20px;
             max-width: 500px;
             backdrop-filter: blur(10px);
@@ -378,15 +388,14 @@
         .letter-card p { font-size: 1.1rem; color: #004d40; line-height: 2; margin-bottom: 12px; }
         .signature { text-align: left; font-weight: bold; font-size: 1.2rem; color: #00bfa5; margin-top: 15px; direction: ltr; }
 
-        .confetti {
+        .confetti, .falling-heart {
             position: fixed;
-            width: 10px;
-            height: 10px;
             z-index: 99;
-            top: -10px;
+            top: -20px;
             animation: fall 3s linear forwards;
         }
-        @keyframes fall { to { transform: translateY(100vh) rotate(720deg); opacity: 0; } }
+        .falling-heart { font-size: 1.5rem; }
+        @keyframes fall { to { transform: translateY(105vh) rotate(720deg); opacity: 0; } }
     </style>
 </head>
 <body>
@@ -408,6 +417,7 @@
                 <div>۱</div><div>۲</div><div>۳</div><div>۴</div><div>۵</div><div>۶</div><div>۷</div>
                 <div>۸</div><div>۹</div><div>۱۰</div><div>۱۱</div><div>۱۲</div><div>۱۳</div><div>۱۴</div>
                 <div>۱۵</div><div>۱۶</div><div>۱۷</div><div>۱۸</div><div>۱۹</div><div>۲۰</div><div>۲۱</div>
+
                 <div>۲۲</div><div>۲۳</div><div>۲۴</div><div>۲۵</div><div>۲۶</div><div>۲۷</div><div>۲۸</div>
                 <div>۲۹</div><div>۳۰</div><div class="cal-day special" onclick="nextStage(2)">۳۱</div>
             </div>
@@ -419,10 +429,9 @@
     <div class="stage" id="stage2">
         <p>ماه روی آب رو لمس کن تا جادو بشه... 🌙✨</p>
         <div id="moon-reflection" onclick="triggerConfettiAndNext()"></div>
-
     </div>
 
-    <!-- مرحله ۳: پیانوی کامل 2 اکتاو -->
+    <!-- مرحله ۳: پیانوی کامل -->
     <div class="stage" id="stage3">
         <h1>پیانوی گرند پارمیس 🎹</h1>
         <p>قطعه Fur Elise رو بنواز: <b style="color:#00bfa5">E4 - D#4 - E4 - D#4</b></p>
@@ -430,7 +439,6 @@
         <div class="piano-wrapper">
             <div class="piano-brand">PARMIS GRAND PIANO</div>
             <div class="piano">
-                <!-- اکتاو اول -->
                 <div class="key" onclick="playNote(261.63, 'C4', this)">C4</div>
                 <div class="key black" style="left: 4.8%;" onclick="playNote(277.18, 'C#4', this)"></div>
                 <div class="key" onclick="playNote(293.66, 'D4', this)">D4</div>
@@ -444,7 +452,6 @@
                 <div class="key black" style="left: 40.4%;" onclick="playNote(466.16, 'A#4', this)"></div>
                 <div class="key" onclick="playNote(493.88, 'B4', this)">B4</div>
 
-                <!-- اکتاو دوم -->
                 <div class="key" onclick="playNote(523.25, 'C5', this)">C5</div>
                 <div class="key black" style="left: 54.7%;" onclick="playNote(554.37, 'C#5', this)"></div>
                 <div class="key" onclick="playNote(587.33, 'D5', this)">D5</div>
@@ -462,28 +469,29 @@
         <button class="btn" style="margin-top:20px; font-size:0.85rem; padding:6px 18px;" onclick="nextStage(4)">رد شدن ➔</button>
     </div>
 
-    <!-- مرحله ۴: صورت فلکی -->
+    <!-- مرحله ۴: صورت فلکی اختصاصی (شکل حرف P) -->
     <div class="stage" id="stage4">
         <h1>آسمان پارمیس ⭐</h1>
-        <p id="star-desc">در حال تشکیل صورت فلکی...</p>
+        <p id="star-desc">در حال تشکیل صورت فلکی اختصاصی...</p>
         <div class="constellation-box" id="constellation">
             <svg style="position:absolute; width:100%; height:100%; top:0; left:0; z-index:1;">
-                <line id="line1" x1="50" y1="50" x2="160" y2="40" stroke="#00bfa5" stroke-width="2" style="display:none;"/>
-                <line id="line2" x1="160" y1="40" x2="270" y2="100" stroke="#00bfa5" stroke-width="2" style="display:none;"/>
-                <line id="line3" x1="270" y1="100" x2="210" y2="230" stroke="#00bfa5" stroke-width="2" style="display:none;"/>
-                <line id="line4" x1="210" y1="230" x2="80" y2="200" stroke="#00bfa5" stroke-width="2" style="display:none;"/>
-            </svg>
-            <div class="star-node" id="star1" style="top:40px; left:40px;"></div>
-            <div class="star-node" id="star2" style="top:30px; left:150px;"></div>
-            <div class="star-node" id="star3" style="top:90px; left:260px;"></div>
-            <div class="star-node" id="star4" style="top:220px; left:200px;"></div>
-            <div class="star-node" id="star5" style="top:190px; left:70px;"></div>
-        </div>
+                <line id="line1" x1="100" y1="50" x2="100" y2="150" stroke="#00bfa5" stroke-width="2" style="display:none;"/>
+                <line id="line2" x1="100" y1="150" x2="100" y2="250" stroke="#00bfa5" stroke-width="2" style="display:none;"/>
 
+                <line id="line3" x1="100" y1="50" x2="200" y2="50" stroke="#00bfa5" stroke-width="2" style="display:none;"/>
+                <line id="line4" x1="200" y1="50" x2="200" y2="140" stroke="#00bfa5" stroke-width="2" style="display:none;"/>
+                <line id="line5" x1="200" y1="140" x2="100" y2="140" stroke="#00bfa5" stroke-width="2" style="display:none;"/>
+            </svg>
+            <div class="star-node" id="star1" style="top:40px; left:90px;"></div>
+            <div class="star-node" id="star2" style="top:140px; left:90px;"></div>
+            <div class="star-node" id="star3" style="top:240px; left:90px;"></div>
+            <div class="star-node" id="star4" style="top:40px; left:190px;"></div>
+            <div class="star-node" id="star5" style="top:130px; left:190px;"></div>
+        </div>
         <button class="btn" id="btn-stage4" style="display:none; margin-top:15px;" onclick="nextStage(5)">ورود به دنیای بعدی 🔮</button>
     </div>
 
-    <!-- مرحله ۵: Stranger Things (تاریک) -->
+    <!-- مرحله ۵: Stranger Things -->
     <div class="stage" id="stage5">
         <div class="hawkins-sign">
             <span>WELCOME TO</span>
@@ -506,20 +514,58 @@
             <p class="st-quote-2">"If we're dying, we're dying together."</p>
         </div>
 
-        <button class="btn" id="btn-stage5" style="display:none; margin-top:10px;" onclick="nextStage(6)">ورود به جشن 🎂</button>
+        <button class="btn" id="btn-stage5" style="display:none; margin-top:10px;" onclick="nextStage(6)">ورود به پلی‌لیست 🎧</button>
     </div>
 
-    <!-- مرحله ۶: کیک تولد -->
+    <!-- مرحله ۶: پلی‌لیست ۱۷ سالگی -->
     <div class="stage" id="stage6">
+        <h1>پلی‌لیست اختصاصی ۱۷ سالگی 🎧</h1>
+        <p>آهنگ‌های ماندگار سن ۱۷ سالگی برای پارمیس ♡</p>
+        <div class="playlist-card">
+            <div class="track-item">
+                <div class="track-icon">🎵</div>
+                <div class="track-info">
+                    <div class="track-title">Dancing Queen (At Seventeen)</div>
+                    <div class="track-artist">ABBA</div>
+                </div>
+            </div>
+            <div class="track-item">
+                <div class="track-icon">🎵</div>
+                <div class="track-info">
+                    <div class="track-title">Seventeen</div>
+                    <div class="track-artist">Alessia Cara</div>
+                </div>
+
+            </div>
+            <div class="track-item">
+                <div class="track-icon">🎵</div>
+                <div class="track-info">
+                    <div class="track-title">Edge of Seventeen</div>
+                    <div class="track-artist">Stevie Nicks</div>
+                </div>
+            </div>
+            <div class="track-item">
+                <div class="track-icon">🎵</div>
+                <div class="track-info">
+                    <div class="track-title">Neverending Story</div>
+                    <div class="track-artist">Stranger Things OST</div>
+                </div>
+            </div>
+        </div>
+        <button class="btn" style="margin-top:20px;" onclick="nextStage(7)">ورود به جشن 🎂</button>
+    </div>
+
+    <!-- مرحله ۷: کیک تولد -->
+    <div class="stage" id="stage7">
         <h1 style="color:#00796b;">تولدت مبارک فرشته من! 🎉</h1>
         <div class="cake-container">🎂</div>
         <h1 style="font-size: 3.5rem; color:#00bfa5; text-shadow: 0 4px 10px rgba(0,0,0,0.1);">17</h1>
         <p>۱۷ سالگی قشنگت مبارک باشه!</p>
-        <button class="btn" style="margin-top:15px;" onclick="nextStage(7)">خواندن نامه 💌</button>
+        <button class="btn" style="margin-top:15px;" onclick="nextStage(8)">خواندن نامه 💌</button>
     </div>
 
-    <!-- مرحله ۷: نامه -->
-    <div class="stage" id="stage7">
+    <!-- مرحله ۸: نامه -->
+    <div class="stage" id="stage8">
         <div class="letter-card">
             <p>سلام فرشتم،</p>
             <p>تولدت مبارککک 💙</p>
@@ -536,7 +582,6 @@
         let stars = [];
 
         function resizeCanvas() {
-
             canvas.width = window.innerWidth;
             canvas.height = window.innerHeight;
             initStars();
@@ -550,6 +595,7 @@
                     y: Math.random() * canvas.height,
                     radius: Math.random() * 1.5,
                     alpha: Math.random(),
+
                     speed: Math.random() * 0.02
                 });
             }
@@ -586,18 +632,14 @@
                 ocean.style.filter = "none";
                 startConstellationAnimation();
             } else if(stageNum === 5) {
-                // مرحله ۵: دارک و Stranger Things
                 bgCanvas.style.background = "#0d0205";
                 ocean.style.filter = "hue-rotate(280deg) brightness(0.2)";
-            } else if(stageNum === 6) {
-                bgCanvas.style.background = "linear-gradient(135deg, #fff3e0 0%, #e0f2f1 100%)";
-                ocean.style.filter = "none";
-            } else if(stageNum === 7) {
+            } else if(stageNum === 8) {
                 bgCanvas.style.background = "linear-gradient(135deg, #fce4ec 0%, #e0f7fa 100%)";
                 ocean.style.filter = "none";
+                startHeartRain();
             } else {
                 bgCanvas.style.background = "linear-gradient(135deg, #e0f7fa 0%, #fff3e0 100%)";
-
                 ocean.style.filter = "none";
             }
         }
@@ -613,6 +655,21 @@
                 setTimeout(() => confetti.remove(), 3000);
             }
             setTimeout(() => nextStage(3), 1200);
+
+        }
+
+        function startHeartRain() {
+            for(let i = 0; i < 40; i++) {
+                setTimeout(() => {
+                    const heart = document.createElement('div');
+                    heart.className = 'falling-heart';
+                    heart.innerText = ['💖', '🌸', '✨', '🤍'][Math.floor(Math.random()*4)];
+                    heart.style.left = Math.random() * 100 + 'vw';
+                    heart.style.animationDuration = (Math.random() * 2 + 2) + 's';
+                    document.body.appendChild(heart);
+                    setTimeout(() => heart.remove(), 4000);
+                }, i * 150);
+            }
         }
 
         const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
@@ -657,17 +714,17 @@
 
             if(pianoSequence.join('-') === 'E4-D#4-E4-D#4' || pianoSequence.join('-') === 'E5-D#5-E5-D#5') {
                 setTimeout(() => nextStage(4), 800);
-
             }
         }
+
 
         function startConstellationAnimation() {
             const items = [
                 { id: 'star1', text: 'خوش‌خنده و پرانرژی 😃✨', line: null },
-                { id: 'star2', text: 'بی‌نهایت زیبا و دوست‌داشتنی 🌸', line: 'line1' },
-                { id: 'star3', text: 'بااستعداد و هنرمند 🎹', line: 'line2' },
-                { id: 'star4', text: 'مهربون و عمیق مثل دریا 🌊', line: 'line3' },
-                { id: 'star5', text: 'قشنگ‌ترین دختر ۱۷ ساله 👑', line: 'line4' }
+                { id: 'star2', text: 'بی‌نهایت زیبا 🌸', line: 'line1' },
+                { id: 'star3', text: 'مهربون و صمیمی 💖', line: 'line2' },
+                { id: 'star4', text: 'بااستعداد و هنرمند 🎹', line: 'line3' },
+                { id: 'star5', text: 'قشنگ‌ترین دختر ۱۷ ساله (Parmis) 👑', line: 'line4' }
             ];
 
             let step = 0;
@@ -681,6 +738,10 @@
                         document.getElementById(item.line).style.display = 'block';
                     }
 
+                    if(step === 4) {
+                        document.getElementById('line5').style.display = 'block';
+                    }
+
                     const label = document.createElement('div');
                     label.className = 'star-text';
                     label.innerText = item.text;
@@ -692,7 +753,7 @@
                     step++;
                 } else {
                     clearInterval(interval);
-                    document.getElementById('star-desc').innerText = "صورت فلکی مخصوص پارمیس ⭐";
+                    document.getElementById('star-desc').innerText = "صورت فلکی P مخصوص پارمیس ⭐";
                     document.getElementById('btn-stage4').style.display = 'inline-block';
                 }
             }, 800);
